@@ -1,0 +1,505 @@
+*,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("../Images/Backdrop.png");
+}
+
+.width-auto {
+    width: 92%;
+    margin: 0 auto;
+}
+
+header {
+    /* background-color: antiquewhite; */
+    height: 60px;
+}
+
+.header-left{
+    width: 65%;
+}
+.header-right{
+    text-align: right;
+    width: 35%;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    list-style: none;
+    font-size: 18px;
+    font-family: Montserrat;
+    margin: 0 20px;
+    padding: 2px 0;
+}
+
+header nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    color: #FFFFFF;
+    border-bottom: 2px #D10808 solid;
+}
+
+#login {
+    color: white;
+    padding: 4px 20px;
+    text-decoration: none;
+    border: 2px #D10808 solid;
+    border-radius: 20px;
+    box-shadow: 0px 0px 18px 2px #FE9292;
+    /*font-size: 16;*/
+}
+
+/* LOGIN FORM START */
+/* ------------------------ */
+#username-label{
+    display: none;
+}
+#login-button {
+    color: white;
+    padding: 4px 20px;
+    text-decoration: none;
+    border: 2px #D10808 solid;
+    border-radius: 20px;
+    box-shadow: 0px 0px 18px 2px #fe9292;
+    background-color: #5a2121;
+}
+
+#login-form {
+    display: none;
+    position: fixed;
+    width: 330px;
+    height: 300px;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* semi-transparent black */
+    z-index: 9998;
+    /* set z-index to be lower than login form */
+    display: none;
+    /* hide the overlay by default */
+}
+
+#login-form form {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgb(8 7 16 / 60%);
+    padding: 20px;
+}
+
+#login-form form * {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+#login-form form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+    color: #F17272;
+}
+
+#login-form form a {
+    text-decoration: none;
+    color: #F17272;
+}
+
+#login-form form span {
+    font-size: 15px;
+    color: #0a3860;
+}
+
+#login-form label {
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+}
+
+#login-form input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: appworkspace;
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#login-form ::placeholder {
+    color: grey;
+}
+
+#login-form button {
+    margin: 20px 0px 20px 0px;
+    width: 100%;
+    background-color: #F17272;
+    color: white;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* LOGIN FORM END */
+
+/* Header End */
+
+/* Carousel Starts */
+.carousel-inner {
+    height: 500px;
+}
+
+.carousel-item {
+    object-fit: cover;
+}
+
+/* Carousel End */
+
+/* Now Coming Section Start */
+.now-showing,
+.comming-soon {
+    margin: 50px auto;
+}
+
+.top {
+    border-bottom: 2px #D10808 solid;
+    box-shadow: 1px 2px 6px 0px #FEBCBC;
+    margin-bottom: 40px;
+}
+
+.top-left {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.now-showing nav ul li {
+    font-weight: 500;
+    list-style: none;
+    color: white;
+    font-size: 16px;
+    margin: 0 0 0 15px;
+    padding: 15px 0;
+}
+
+.movies {
+    flex-flow: wrap;
+}
+
+.movie-container {
+    margin-right: 25px;
+    text-decoration: none;
+}
+
+.movie-container img {
+    background-color: #D10808;
+    height: 320px;
+    width: 250px;
+}
+
+.movie-title {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+.movie-gene {
+    text-transform: capitalize;
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Now showing Ends */
+
+/* Image section Start */
+.image {
+    height: 320px;
+    background-color: #FFFFFF;
+    margin-bottom: 50px;
+
+}
+
+/* Image section End */
+
+
+/* Footer Start */
+footer {
+    background-color: black;
+    color: white;
+}
+
+.upper {
+    border-bottom: 1px solid #EF2B2B;
+    padding: 60px 80px;
+}
+
+.upper-title {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.upper-contains {
+    color: #F17272;
+    font-size: 16;
+    text-decoration: none;
+}
+
+.lower {
+    font-weight: 500;
+}
+
+.lower .name {
+    color: #F17272;
+
+}
+
+/* *************** */
+/* ABOUT US PAGE */
+
+.about-us {
+    background-image: url("../Images/aboutus-poster.jpg");
+    padding: 50px;
+    height: 500px;
+    background-size: cover;
+    margin-bottom: 50px;
+    ;
+}
+
+.about-us-lower {
+    height: 400px;
+    margin: 50px auto;
+}
+
+.about-us-title {
+    color: white;
+    border-bottom: 8px solid #D10808;
+    display: inline-block;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+
+.about-us-discreption {
+    color: white;
+    padding: 60px 40px;
+    width: 50%;
+    text-align: justify;
+}
+
+.about-us-photo {
+    width: 50%;
+    background-image: url("../Images/aboutus-bottom.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* *************** */
+/*  TICKET RATE PAGE */
+
+.ticket {
+    background-color: #701313;
+    color: white;
+    padding: 50px 30px;
+    border-radius: 25px;
+}
+
+.ticket-container {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.ticket-container-header {
+    background-color: #8f3232;
+    padding: 5px 15px;
+}
+
+.ticket-container-header h4 {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.ticket-container-body {
+    border-bottom: 1px solid #9e2a2a;
+    padding: 5px 15px;
+}
+
+.ticket-container-body p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+/* *************** */
+/*  MOVIE DETAILS PAGE */
+
+.trailer {
+    height: 450px;
+}
+
+.trailer iframe {
+    width: 100%;
+    height: inherit;
+
+}
+
+.movie-details-container img {
+    width: 40%;
+    height: 445px;
+    padding-right: 100px;
+}
+
+.movie-details-container {
+    color: white;
+    margin: 50px auto;
+    text-transform: capitalize;
+}
+
+.movie-details-title {
+    font-size: 40px;
+}
+
+.movie-details p,
+.movie-details h6 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.movie-details-row {
+    margin: 4px 0;
+}
+
+.movie-details-gene,
+.movie-details-row-t {
+    margin-top: 20px;
+}
+
+.movie-details-row-t h6,
+.movie-details-row p {
+    width: 50%;
+}
+
+.room {
+    background-color: #8f3232;
+    border-radius: 25px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.room-name {
+    background-color: #701313;
+    color: white;
+    font-size: 20px;
+    width: 135px;
+    height: inherit;
+    border-radius: 25px 0px 0px 25px;
+    padding: 35px;
+    font-weight: 700;
+}
+
+.room-time {
+    padding: 0 45px;
+}
+
+.room-time a {
+    text-decoration: none;
+    color: white;
+    opacity: 0.8;
+    margin-right: 25px;
+    font-size: 18px;
+    border: 3px solid #ffffffb0;
+    padding: 15px 20px;
+    border-radius: 30px;
+}
+
+/* *************** */
+/*  CONFIRM  BOOKING PAGE */
+
+.confirm-img img {
+    width: 100%;
+}
+
+.confirm-booking-container {
+    margin: 50px auto 10px auto;
+}
+
+.confirm-booking {
+    width: 45%;
+    border-bottom: 3px solid #9e2a2a;
+}
+
+.confirm-booking h6 {
+    background-color: #8f3232;
+    color: white;
+    font-size: 25px;
+    padding: 15px 25px;
+}
+
+.confirm-booking-body {
+    padding: 20px;
+}
+
+.confirm-booking-body ul li {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    list-style: none;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.confirm-booking-body ul li label {
+    font-weight: 500;
+    width: 20%;
+}
+
+.confirm-booking-body-calculate {
+    border-bottom: 1px solid white;
+}
+
+.confirm-booking-body-span {
+    display: inline-block;
+    width: 20%;
+}
+
+.buy-now {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #9e2a2a;
+    margin: 0 30px;
+}
+
+
+
