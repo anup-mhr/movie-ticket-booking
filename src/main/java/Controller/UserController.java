@@ -187,6 +187,7 @@ public class UserController extends HttpServlet {
             List<Seats> seats = new SeatServiceImpl().getSeats();
 
             request.setAttribute("seats", seats);
+            request.setAttribute("showtime_id", showtime_id);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking.jsp");
             rd.forward(request, response);

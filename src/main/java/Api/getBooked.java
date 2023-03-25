@@ -28,7 +28,9 @@ public class getBooked extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-
+        
+        int showtime_id = Integer.parseInt(request.getParameter("showtime_id"));
+        
         Book book = new Book();
         List<Book> books = new BookingServiceImpl().getMoviesByShowtime(1);
         int[] seatIds = new int[books.size()];

@@ -68,7 +68,9 @@
                 });
             });
 
-            // Send an AJAX request to the server to retrieve the JSON data
+            let showtime_id = ${showtime_id};   //Getting the showtime_id for sending as parameter
+
+            // Send an AJAX request to the server to retrieve the JSON data   
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -85,7 +87,7 @@
                     });
                 }
             };
-            xhr.open("GET", "/ticket_booking/getBooked", true);
+            xhr.open("GET", "/ticket_booking/getBooked?showtime_id=" + showtime_id, true);
             xhr.send();
 
         </script>
