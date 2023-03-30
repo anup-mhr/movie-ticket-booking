@@ -65,10 +65,35 @@ public class UserController extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/home.jsp");
             rd.forward(request, response);
         }
-
+        
+        //FORGOT PASSWORD PROCESS
+        if(page.equalsIgnoreCase("forgotpassword")){
+            
+        }
+        
+        // SIGNUP PROCESS
         if (page.equalsIgnoreCase("register")) {
-            RequestDispatcher rd = request.getRequestDispatcher("");
-            rd.forward(request, response);
+            try {
+                String name = request.getParameter("username");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String confirm_password = request.getParameter("confirm_password");
+                
+                String hashedPassword = get_hash(password);
+                
+                User user = new User();
+                user.setName(name);
+                user.setEmail(email);
+                user.setPassword(hashedPassword);
+                
+                get_home_info(request, response);
+                
+                RequestDispatcher rd = request.getRequestDispatcher("/Pages/home.jsp");
+                rd.forward(request, response);
+                
+            } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         //lOGIN PROCESS
@@ -212,8 +237,7 @@ public class UserController extends HttpServlet {
         boolean isValidUser = false;
 
         // Getting Hashed Password
-        SaltedMD5 md = new SaltedMD5();
-        String hashedPassword = md.getHash(password);
+        String hashedPassword = get_hash(password);
 
         User user = new UserServiceImpl().getUser(username);
 
@@ -226,6 +250,13 @@ public class UserController extends HttpServlet {
             isValidUser = true;
         }
         return isValidUser;
+    }
+    
+    // Hash Password function
+    private static String get_hash(String password) throws NoSuchAlgorithmException, NoSuchProviderException{
+        SaltedMD5 md = new SaltedMD5();
+        String hash = md.getHash(password);
+        return hash;
     }
 
     private static void get_home_info(HttpServletRequest request, HttpServletResponse response) {
