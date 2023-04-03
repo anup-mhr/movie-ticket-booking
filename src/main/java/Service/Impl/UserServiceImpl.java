@@ -12,23 +12,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Anup
  */
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
+
     @Override
-    public boolean isUserExist(String name){
-        User user =  getUserByname(name);
-        return user!=null;
+    public boolean isUserExist(String name) {
+        User user = null;
+        user = getUserByname(name);
+        return user != null;
     }
-    
-    private static User getUserByname(String name){
+
+    private static User getUserByname(String name) {
         User User = null;
         String query = "select * from customers where name=?";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
         try {
+            PreparedStatement preparedStatement = dbConnect.getStatement(query);
+
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -37,14 +43,15 @@ public class UserServiceImpl implements UserService{
                 User.setName(resultSet.getString("name"));
                 User.setEmail(resultSet.getString("email"));
                 User.setPassword(resultSet.getString("password"));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
         return User;
     }
-    
+
     @Override
     public User getUser(String name) {
         User User = null;
@@ -77,7 +84,7 @@ public class UserServiceImpl implements UserService{
             preparedStatement.setString(3, User.getPassword());
             preparedStatement.execute();
         } catch (SQLException e) {
-
+            e.printStackTrace();
         }
     }
 

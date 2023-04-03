@@ -4,12 +4,15 @@
  */
 package Controller;
 
+import Model.Book;
 import Model.Movie;
 import Model.Screens;
 import Model.Seats;
 import Model.ShowTime;
+import Model.ShowtimeMovieScreen;
 import Model.User;
 import Programs.SaltedMD5;
+import Service.Impl.BookingServiceImpl;
 import Service.Impl.MovieServiceImpl;
 import Service.Impl.ScreensServiceImpl;
 import Service.Impl.SeatServiceImpl;
@@ -17,8 +20,11 @@ import Service.Impl.ShowtimeServiceImpl;
 import Service.Impl.UserServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +37,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONArray;
 
 /**
  *
@@ -65,12 +72,12 @@ public class UserController extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/home.jsp");
             rd.forward(request, response);
         }
-        
+
         //FORGOT PASSWORD PROCESS
-        if(page.equalsIgnoreCase("forgotpassword")){
-            
+        if (page.equalsIgnoreCase("forgotpassword")) {
+
         }
-        
+
         // SIGNUP PROCESS
         if (page.equalsIgnoreCase("register")) {
             try {
@@ -78,19 +85,21 @@ public class UserController extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String confirm_password = request.getParameter("confirm_password");
-                
+
                 String hashedPassword = get_hash(password);
-                
+
                 User user = new User();
                 user.setName(name);
                 user.setEmail(email);
                 user.setPassword(hashedPassword);
-                
+
+                new UserServiceImpl().insertUser(user);
+
                 get_home_info(request, response);
-                
+
                 RequestDispatcher rd = request.getRequestDispatcher("/Pages/home.jsp");
                 rd.forward(request, response);
-                
+
             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                 Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -218,6 +227,53 @@ public class UserController extends HttpServlet {
             rd.forward(request, response);
         }
 
+        if (page.equalsIgnoreCase("bookingConfirm")) {
+            HttpSession session = request.getSession(true);
+            String username = (String) session.getAttribute("username");
+
+            int showtime_id = Integer.parseInt(request.getParameter("showtime_id"));
+
+            User customer = new UserServiceImpl().getUser(username);
+            System.out.println(customer.getCustomer_id());
+
+            String selectedSeatsParam = request.getParameter("selectedSeats");
+            JSONArray selectedSeats = new JSONArray(URLDecoder.decode(selectedSeatsParam, "UTF-8"));
+
+            //Inserting the booking valu
+            float final_price = 0;
+            for (int i = 0; i < selectedSeats.length(); i++) {
+                int seat = Integer.parseInt(selectedSeats.getString(i));
+                Book booking = new Book();
+                booking.setCustomer_id(customer.getCustomer_id());
+                booking.setShowtime_id(showtime_id);
+                booking.setTotal_price(150);
+                booking.setSeat_id(seat);
+
+                final_price = final_price + 150;
+
+                new BookingServiceImpl().insertBooking(booking);
+            }
+
+            ShowtimeMovieScreen showtime_detaiils = new ShowtimeServiceImpl().getShowtimeDetailsById(showtime_id);
+            LocalDate currentDate = LocalDate.now();
+            LocalTime currentTime = LocalTime.now();
+
+//            request.setAttribute("selectedSeats",selectedSeats);
+            request.setAttribute("showtime_detaiils", showtime_detaiils);
+            request.setAttribute("totalSeats", selectedSeats.length());
+            request.setAttribute("final_price", final_price);
+            request.setAttribute("currentDate", currentDate);
+            request.setAttribute("currentTime", currentTime);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking-confirm.jsp");
+            rd.forward(request, response);
+        }
+
+        if (page.equalsIgnoreCase("bookingBilling")) {
+            RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking-billing.jsp");
+            rd.forward(request, response);
+        }
+
         //LOGOUT PROCESS
         if (page.equalsIgnoreCase("logout")) {
 
@@ -251,11 +307,10 @@ public class UserController extends HttpServlet {
         }
         return isValidUser;
     }
-    
+
     // Hash Password function
-    private static String get_hash(String password) throws NoSuchAlgorithmException, NoSuchProviderException{
-        SaltedMD5 md = new SaltedMD5();
-        String hash = md.getHash(password);
+    private static String get_hash(String password) throws NoSuchAlgorithmException, NoSuchProviderException {
+        String hash = new SaltedMD5().getHash(password);
         return hash;
     }
 

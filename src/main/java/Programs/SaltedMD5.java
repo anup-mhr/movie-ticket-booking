@@ -19,7 +19,7 @@ public class SaltedMD5 {
         String salt = "[B@5cad8086";
 
         String securePassword = getSecurePassword(passwordToHash, salt);
-//        System.out.println(securePassword);
+        System.out.println(securePassword);
         return securePassword;
     }
 

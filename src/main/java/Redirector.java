@@ -4,7 +4,6 @@
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.servlet.ServletException;
@@ -33,7 +32,7 @@ public class Redirector extends HttpServlet {
 
         // Check if the requested URL is for a static resource
         String path = request.getRequestURI().substring(request.getContextPath().length());
-        if (path.startsWith("/Images/") || path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/Style/")) {
+        if (path.startsWith("/Images/") || path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/Style/") || path.startsWith("/Pages/assets/") || path.startsWith("/Admin/")) {
             String fullPath = getServletContext().getRealPath(path);
             response.setContentType(getServletContext().getMimeType(fullPath));
             Files.copy(Paths.get(fullPath), response.getOutputStream());

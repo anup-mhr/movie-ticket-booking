@@ -20,6 +20,7 @@
                 grid-gap: 10px;
                 margin: 50px;
             }
+
             /* Define the seat style */
             .seat {
                 width: 50px;
@@ -28,47 +29,93 @@
                 border: none;
                 cursor: pointer;
             }
+
             /* Define the selected seat style */
             .seat.selected {
-                background-color: #ffa07a;
+                background-color: #387a21;
             }
+
             /* Define the booked seat style */
             .seat.booked {
-                background-color: #c0c0c0;
+                background-color: #a90808;
                 cursor: not-allowed;
             }
         </style>
     </head>
     <body>
-        <h1>Select Your Seats</h1>
-        <div class="seat-grid">
-            <!-- Add the seats manually -->
-            <c:forEach items="${seats}" var="seat">
-                <button class="seat">${seat.seat_id}</button>
-            </c:forEach>
-            <!--            <button class="seat">2</button>
-                        <button class="seat">3</button>
-                        <button class="seat">4</button>
-                        <button class="seat">5</button>
-                        <button class="seat">6</button>
-                        <button class="seat">7</button>
-                        <button class="seat">8</button>
-                        <button class="seat">9</button>
-                        <button class="seat">10</button>-->
-            <!-- Add more seats here -->
-        </div>
+        <%@include file="/include/header.jsp" %>
+
+        <section class="movie-booking width-auto">
+            <div class="movie-booking-details">
+                <span>Audi A- Chakka Panja</span>
+                <span>Tue 2 Mar</span>
+                <span>11:00 AM</span>
+            </div>
+            <div class="screen-box">
+                <div class="screen">Screen</div>
+                <div class="seat-grid">
+                    <!-- Add the seats manually -->
+                    <c:forEach items="${seats}" var="seat">
+                        <button class="seat">${seat.seat_id}</button>
+                    </c:forEach>
+                </div>
+            </div>
+        </section>
+
+        <section class="movie-booking-proceed width-auto d-flex justify-content-between">
+            <p id="amount">Amount: <span id="sum">0</span></p>
+            <button id="proceed">Proceed</button>
+        </section>
+
+        <%@include file="/include/footer.jsp" %>
+
         <script>
-            // Add event listeners to the seats
-            const seats = document.querySelectorAll('.seat');
-            seats.forEach((seat) => {
-                seat.addEventListener('click', () => {
-                    if (!seat.classList.contains('booked')) {
-                        seat.classList.toggle('selected');
-                    }
+            let showtime_id = ${showtime_id};   //Getting the showtime_id for sending as parameter
+
+            //loading the html before going any further
+            document.addEventListener('DOMContentLoaded', () => {
+                let sum = 0;
+                let amount = document.getElementById("sum");
+
+                const selectedSeats = [];
+
+                //Adding listeenr to the seats
+                const seats = document.querySelectorAll('.seat');
+                seats.forEach((seat) => {
+                    seat.addEventListener('click', () => {
+                        if (!seat.classList.contains('booked')) {
+                            seat.classList.toggle('selected');
+
+                            //
+                            const seatNumber = seat.innerHTML;
+                            const index = selectedSeats.indexOf(seatNumber);
+                            if (index === -1) {
+                                selectedSeats.push(seatNumber);
+                                sum += 150;
+                            } else {
+                                selectedSeats.splice(index, 1);
+                                sum -= 150;
+                            }
+                            amount.innerHTML = sum;
+
+                            console.log(selectedSeats);
+                        }
+                    });
                 });
+
+                //Sending info to servlet
+                const proceedBtn = document.getElementById("proceed");
+                proceedBtn.addEventListener('click', () => {
+                    const selectedSeatsParam = encodeURIComponent(JSON.stringify(selectedSeats));
+                    const url = "UserController?page=bookingConfirm&showtime_id=${showtime_id}&selectedSeats="+selectedSeatsParam;
+                    window.location.href = url;
+                });
+
+
+
             });
 
-            let showtime_id = ${showtime_id};   //Getting the showtime_id for sending as parameter
+
 
             // Send an AJAX request to the server to retrieve the JSON data   
             var xhr = new XMLHttpRequest();

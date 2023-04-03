@@ -32,15 +32,29 @@ public class DBConnection {
     public static void main(String[] args) {
         DBConnection dbConnection = new DBConnection();
     }
+    public void CloseConnection () {
+        try{
+            this.connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+        
+    }
 
-    public PreparedStatement getStatement(String query) {
+    public PreparedStatement getStatement(String query){
         PreparedStatement preparedStatement = null;
         try {
             System.out.println("say why");
-            preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query);   
         } catch (SQLException e) {
             e.printStackTrace();
         }
+//        finally{
+//            connection.close();
+//        }
+        
         return preparedStatement;
     }
 }

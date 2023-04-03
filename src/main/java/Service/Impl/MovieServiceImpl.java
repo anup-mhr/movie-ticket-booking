@@ -12,19 +12,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Anup
  */
-public class MovieServiceImpl implements MovieService{
+public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getMovies() {
         List<Movie> movies = new ArrayList<Movie>();
         String query = "select * from movies";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
         try {
+            PreparedStatement preparedStatement = dbConnect.getStatement(query);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Movie movie = new Movie();
@@ -43,6 +47,8 @@ public class MovieServiceImpl implements MovieService{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
         return movies;
     }
@@ -51,8 +57,10 @@ public class MovieServiceImpl implements MovieService{
     public List<Movie> getMoviesAfterRelease() {
         List<Movie> movies = new ArrayList<Movie>();
         String query = "select * from movies where release_date<=now();";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
         try {
+            PreparedStatement preparedStatement = dbConnect.getStatement(query);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Movie movie = new Movie();
@@ -71,6 +79,8 @@ public class MovieServiceImpl implements MovieService{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
         return movies;
     }
@@ -79,8 +89,10 @@ public class MovieServiceImpl implements MovieService{
     public List<Movie> getMoviesBeforeRelease() {
         List<Movie> movies = new ArrayList<Movie>();
         String query = "select * from movies where release_date>=now();";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
         try {
+            PreparedStatement preparedStatement = dbConnect.getStatement(query);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Movie movie = new Movie();
@@ -99,6 +111,8 @@ public class MovieServiceImpl implements MovieService{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
         return movies;
     }
@@ -107,11 +121,12 @@ public class MovieServiceImpl implements MovieService{
     public Movie getMovieById(int movie_id) {
         Movie movie = null;
         String query = "select * from movies where movie_id = ?;";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
         try {
+            PreparedStatement preparedStatement = dbConnect.getStatement(query);
             preparedStatement.setInt(1, movie_id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {  
+            while (resultSet.next()) {
                 movie = new Movie();
                 movie.setMovie_id(resultSet.getInt("movie_id"));
                 movie.setTitle(resultSet.getString("title"));
@@ -127,9 +142,10 @@ public class MovieServiceImpl implements MovieService{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
-        return movie;    }
+        return movie;
+    }
 
-    
- 
 }
