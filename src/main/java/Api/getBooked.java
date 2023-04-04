@@ -32,7 +32,7 @@ public class getBooked extends HttpServlet {
         int showtime_id = Integer.parseInt(request.getParameter("showtime_id"));
         
         Book book = new Book();
-        List<Book> books = new BookingServiceImpl().getMoviesByShowtime(1);
+        List<Book> books = new BookingServiceImpl().getMoviesByShowtime(showtime_id);
         int[] seatIds = new int[books.size()];
         // iterate over each book object in the list
         for (int i = 0; i < books.size(); i++) {

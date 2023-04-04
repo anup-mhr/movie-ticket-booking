@@ -19,6 +19,7 @@
                 grid-template-columns: repeat(10, 50px);
                 grid-gap: 10px;
                 margin: 50px;
+                justify-content: center;
             }
 
             /* Define the seat style */

@@ -125,7 +125,7 @@
 
         <!-- Forgot password Start -->
         <div id="forgot-form">
-            <form class="row g-3 needs-validation" novalidate>
+            <form class="row g-3 needs-validation" novalidate action="forgotPassword" method="post">
                 <h3>Forgot Password</h3>
                 <div class="col-md-12">
                     <label for="validationCustom03" class="form-label">Email</label>
@@ -144,10 +144,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
         <!-- Vendor JS Files -->
-        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="Pages/assets/vendor/tinymce/tinymce.min.js"></script>
 
         <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+        <script src="Pages/assets/js/main.js"></script>
 
     </body>
 

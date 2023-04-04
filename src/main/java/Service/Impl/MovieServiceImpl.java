@@ -148,4 +148,35 @@ public class MovieServiceImpl implements MovieService {
         return movie;
     }
 
+    public void addMovie(Movie movie) {
+        String query = "insert into movies(title, description, release_date, video_url, cast, duration, gene, director, picture, poster) values(?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        try {
+            preparedStatement.setString(1, movie.getTitle());
+            preparedStatement.setString(2, movie.getDescription());
+            preparedStatement.setString(3, movie.getRelease_date());
+            preparedStatement.setString(4, movie.getVideo_url());
+            preparedStatement.setString(5, movie.getCast());
+            preparedStatement.setString(6, movie.getDuration());
+            preparedStatement.setString(7, movie.getGene());
+            preparedStatement.setString(8, movie.getDirector());
+            preparedStatement.setString(9, movie.getPicture());
+            preparedStatement.setString(10, movie.getPoster());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteMovieById(int movie_id) {
+        String query = "delete from movies where movie_id=?";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        try {
+            preparedStatement.setInt(1, movie_id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

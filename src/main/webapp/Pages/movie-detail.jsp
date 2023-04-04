@@ -26,7 +26,7 @@
         </div>
         <section class="movie-details-container width-auto d-flex justify-content-between">
             <img src="${pageContext.request.contextPath}/Images/${movie.picture}" alt="">
-            <div class="movie-details">
+            <div class="movie-details" style="width:60%;">
                 <h4 class="movie-details-title">${movie.title}</h4>
                 <p class="movie-details-description">${movie.description}</p>
                 <div class="movie-details-gene d-flex align-items-center">

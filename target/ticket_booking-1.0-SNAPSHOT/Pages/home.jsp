@@ -28,17 +28,15 @@
                             aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="${pageContext.request.contextPath}/Images/Avenger-poster.jpg" class="d-block w-100" alt="...">
+                    </div>
                     <c:forEach  items="${moviesList}" var="movie">
-                        <div class="carousel-item active">
+                        <div class="carousel-item">
                             <img src="${pageContext.request.contextPath}/Images/${movie.poster}" class="d-block w-100" alt="...">
                         </div>
                     </c:forEach>
-                    <!--                    <div class="carousel-item">
-                                            <img src="${pageContext.request.contextPath}/Images/poster1.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="${pageContext.request.contextPath}/Images/poster1.jpg" class="d-block w-100" alt="...">
-                                        </div>-->
+                    
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
@@ -71,11 +69,7 @@
                         <p class="movie-gene mb-3">Gene: ${movie.gene}</p>
                     </a>
                 </c:forEach>
-                <!--                                <a class="movie-container" href="">
-                                                    <img src="${pageContext.request.contextPath}/Images/selfie.jfif">
-                                                    <p class="movie-title my-1">selfie</p>
-                                                    <p class="movie-gene mb-3">Gene: Action, Comedy</p>
-                                                </a>-->
+
             </div>
         </section>
         <section class="comming-soon width-auto align-items-center">
@@ -90,11 +84,7 @@
                         <p class="movie-gene mb-3">Gene: ${movie.gene}</p>
                     </div>
                 </c:forEach>
-                <!--                <div class="movie-container">
-                                    <img src="${pageContext.request.contextPath}/Images/selfie.jfif">
-                                    <p class="movie-title my-1">selfie</p>
-                                    <p class="movie-gene mb-3">Gene: Action, Comedy</p>
-                                </div>-->
+
             </div>
         </section>
         <section class="image width-auto">

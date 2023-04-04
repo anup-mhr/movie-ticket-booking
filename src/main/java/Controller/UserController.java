@@ -118,6 +118,7 @@ public class UserController extends HttpServlet {
                 return;
             }
             UserServiceImpl userservice = new UserServiceImpl();
+            
             // Check if the username exists in the database
             if (!userservice.isUserExist(username)) {
                 get_home_info(request, response);
