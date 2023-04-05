@@ -40,4 +40,16 @@ public class AdminServiceImpl {
         return false;
     }
 
+    public void UpdateAdminPassword(String password, String username) {
+        Admin Admin = null;
+        String query = "update admin set password=? where name=?";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        try {
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, username);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

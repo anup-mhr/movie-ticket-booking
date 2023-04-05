@@ -289,7 +289,7 @@
                     </ol>
                 </nav>
             </div><!-- End Page Title -->
-
+${changeMessage}
             <section class="section profile">
                 <div class="row">
                     <div class="col-xl-4">
@@ -309,9 +309,8 @@
                         </div>
 
                     </div>
-
+                                
                     <div class="col-xl-8">
-
                         <div class="card">
                             <div class="card-body pt-3">
                                 <!-- Bordered Tabs -->
@@ -372,11 +371,12 @@
                                     <div class="tab-pane fade pt-3" id="profile-change-password">
                                         <!-- Change Password Form -->
                                         <form id="changepasswordform" action="AdminController?page=changePassword" method="post" onsubmit="return validateForm()">
-
+                                            
                                             <div class="row mb-3">
                                                 <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                 <div class="col-md-8 col-lg-9">
                                                     <input name="password" type="password" class="form-control" id="currentPassword">
+                                                    ${statusMessage}
                                                 </div>
                                             </div>
 
@@ -436,43 +436,6 @@
                 return true;
             }
 
-//            const changepasswordform = document.getElementById('changepasswordform');
-//            const changepasswordbutton = document.getElementById('changepasswordbutton');
-//
-//            changepasswordbutton.addEventListener('click', (event) => {
-//                event.preventDefault(); // prevent the form from being submitted
-//
-//                const currentPassword = document.getElementById('currentPassword').value;
-//
-//                // Send a request to the server to check the current password
-//                fetch('/checkCurrentPassword', {
-//                    method: 'POST',
-//                    body: JSON.stringify({currentPassword: currentPassword}),
-//                    headers: {
-//                        'Content-Type': 'application/json'
-//                    }
-//                })
-//                        .then(response => response.json())
-//                        .then(data => {
-//                            if (data.success) {
-//                                // If the current password is correct, submit the form
-//                                changepasswordform.submit();
-//                            } else {
-//                                // If the current password is incorrect, show an error message
-//                                const errorMessage = document.createElement('div');
-//                                errorMessage.classList.add('alert', 'alert-danger');
-//                                errorMessage.textContent = 'Current password is incorrect';
-//                                changepasswordform.insertBefore(errorMessage, changepasswordbutton);
-//                            }
-//                        })
-//                        .catch(error => {
-//                            // If there was an error sending the request, show an error message
-//                            const errorMessage = document.createElement('div');
-//                            errorMessage.classList.add('alert', 'alert-danger');
-//                            errorMessage.textContent = 'There was an error processing your request';
-//                            changepasswordform.insertBefore(errorMessage, changepasswordbutton);
-//                        });
-//            });
         </script>    
 
         <!-- Vendor JS Files -->

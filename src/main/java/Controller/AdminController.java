@@ -228,7 +228,26 @@ public class AdminController extends HttpServlet {
         if (page.equalsIgnoreCase("changePassword")) {
             String password = request.getParameter("password");
             String newpassword = request.getParameter("newpassword");
-            String renewpassword = request.getParameter("renewpassword");
+//            String renewpassword = request.getParameter("renewpassword");
+
+            HttpSession session = request.getSession(true);
+            String username = (String) session.getAttribute("username");
+
+            Boolean status = new AdminServiceImpl().getAdmin(username, password);
+            if (!status) {
+                String statusMessage = "Your current password is Incorrect ";
+                request.setAttribute("statusMessage", statusMessage);
+
+                getHeaderInfo(request, response);
+
+                RequestDispatcher rd = request.getRequestDispatcher("/Admin/users-profile.jsp");
+                rd.forward(request, response);
+            }
+
+            new AdminServiceImpl().UpdateAdminPassword(newpassword, username);
+
+            String changeMessage = "Password Changed";
+            request.setAttribute("changeMessage", changeMessage);
 
             getHeaderInfo(request, response);
 
