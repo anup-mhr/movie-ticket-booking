@@ -10,6 +10,7 @@ import Model.Screens;
 import Model.Seats;
 import Model.ShowTime;
 import Model.ShowtimeMovieScreen;
+import Model.Transaction;
 import Model.User;
 import Programs.SaltedMD5;
 import Service.Impl.BookingServiceImpl;
@@ -17,9 +18,9 @@ import Service.Impl.MovieServiceImpl;
 import Service.Impl.ScreensServiceImpl;
 import Service.Impl.SeatServiceImpl;
 import Service.Impl.ShowtimeServiceImpl;
+import Service.Impl.TransactionServiceImpl;
 import Service.Impl.UserServiceImpl;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -33,6 +34,7 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -118,7 +120,7 @@ public class UserController extends HttpServlet {
                 return;
             }
             UserServiceImpl userservice = new UserServiceImpl();
-            
+
             // Check if the username exists in the database
             if (!userservice.isUserExist(username)) {
                 get_home_info(request, response);
@@ -235,13 +237,14 @@ public class UserController extends HttpServlet {
             int showtime_id = Integer.parseInt(request.getParameter("showtime_id"));
 
             User customer = new UserServiceImpl().getUser(username);
-            System.out.println(customer.getCustomer_id());
+            System.out.println("UserID =" + customer.getCustomer_id());
 
             String selectedSeatsParam = request.getParameter("selectedSeats");
             JSONArray selectedSeats = new JSONArray(URLDecoder.decode(selectedSeatsParam, "UTF-8"));
 
-            //Inserting the booking valu
+            //Inserting the booking value
             float final_price = 0;
+            String seats = null;
             for (int i = 0; i < selectedSeats.length(); i++) {
                 int seat = Integer.parseInt(selectedSeats.getString(i));
                 Book booking = new Book();
@@ -249,7 +252,11 @@ public class UserController extends HttpServlet {
                 booking.setShowtime_id(showtime_id);
                 booking.setTotal_price(150);
                 booking.setSeat_id(seat);
-
+                if (seats == null) {
+                    seats = String.valueOf(seat);
+                } else {
+                    seats = seats + "," + seat;
+                }
                 final_price = final_price + 150;
 
                 new BookingServiceImpl().insertBooking(booking);
@@ -257,20 +264,38 @@ public class UserController extends HttpServlet {
 
             ShowtimeMovieScreen showtime_detaiils = new ShowtimeServiceImpl().getShowtimeDetailsById(showtime_id);
             LocalDate currentDate = LocalDate.now();
-            LocalTime currentTime = LocalTime.now();
 
-//            request.setAttribute("selectedSeats",selectedSeats);
-            request.setAttribute("showtime_detaiils", showtime_detaiils);
+            request.setAttribute("showtime_details", showtime_detaiils);
             request.setAttribute("totalSeats", selectedSeats.length());
             request.setAttribute("final_price", final_price);
             request.setAttribute("currentDate", currentDate);
-            request.setAttribute("currentTime", currentTime);
+
+            Transaction transaction = new Transaction();
+            transaction.setUsername(username);
+            transaction.setMovie_name(showtime_detaiils.getTitle());
+            transaction.setScreen(showtime_detaiils.getName());
+            transaction.setSeats(seats);
+            transaction.setStart_time(showtime_detaiils.getStart_time());
+            transaction.setTotal_price(String.valueOf(final_price));
+            transaction.setDate(String.valueOf(currentDate));
+
+            session.setAttribute("transaction", transaction);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking-confirm.jsp");
             rd.forward(request, response);
         }
 
         if (page.equalsIgnoreCase("bookingBilling")) {
+
+            HttpSession session = request.getSession(true);
+            Transaction transaction = (Transaction) session.getAttribute("transaction");
+            
+            new TransactionServiceImpl().addTransaction(transaction);
+            
+            session.removeAttribute("transaction");
+
+            request.setAttribute("transaction", transaction);
+
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking-billing.jsp");
             rd.forward(request, response);
         }

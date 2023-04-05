@@ -44,7 +44,7 @@ public class ShowtimeServiceImpl implements ShowtimeService {
     }
 
     public ShowtimeMovieScreen getShowtimeDetailsById(int showtime_id) {
-        String query = "SELECT showtime.showtime_id, showtime.movie_id, showtime.screen_id, screens.name, movies.title\n"
+        String query = "SELECT showtime.showtime_id, showtime.movie_id, showtime.screen_id, showtime.start_time, screens.name, movies.title\n"
                 + "FROM showtime\n"
                 + "INNER JOIN screens\n"
                 + "ON showtime.screen_id = screens.screen_id\n"
@@ -62,6 +62,8 @@ public class ShowtimeServiceImpl implements ShowtimeService {
                 showtime_details.setScreen_id(resultSet.getInt("screen_id"));
                 showtime_details.setName(resultSet.getString("name"));
                 showtime_details.setTitle(resultSet.getString("title"));
+                                showtime_details.setStart_time(resultSet.getString("start_time"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

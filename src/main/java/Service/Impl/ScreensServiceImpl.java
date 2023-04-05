@@ -18,6 +18,7 @@ import java.util.List;
  * @author Anup
  */
 public class ScreensServiceImpl implements ScreensService {
+
     @Override
     public List<Screens> getScreenList() {
         List<Screens> screens = new ArrayList<Screens>();
@@ -36,5 +37,21 @@ public class ScreensServiceImpl implements ScreensService {
             e.printStackTrace();
         }
         return screens;
+    }
+
+    public String getScreenName(int screen_id) {
+        String query = "select * from screens where screen_id=?";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        String screen_name = null;
+        try {
+            preparedStatement.setInt(1, screen_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                screen_name = resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return screen_name;
     }
 }

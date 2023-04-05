@@ -25,10 +25,10 @@
                 <h6>Your Summary Panel</h6>
                 <div class="confirm-booking-body">
                     <ul>
-                        <li><label>movie</label><span>${showtime_detaiils.title}</span></li>
-                        <li><label>screen</label><span>${showtime_detaiils.name}</span></li>
+                        <li><label>movie</label><span>${showtime_details.title}</span></li>
+                        <li><label>screen</label><span>${showtime_details.name}</span></li>
                         <li><label>date</label><span>${currentDate}</span></li>
-                        <li><label>time</label><span>${currentTime}</span></li>
+                        <li><label>time</label><span>${showtime_details.start_time}</span></li>
                         <li><label>seats</label><span><c:out value="${totalSeats}"/></span></li>
                     </ul>
                 </div>

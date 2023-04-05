@@ -3,7 +3,7 @@
     Created on : Apr 2, 2023, 8:46:14 PM
     Author     : Anup
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +25,7 @@
           <div class="holes-top"></div>
           <div class="title">
             <p class="cinema">MyShowz Entertainment</p>
-            <p class="movie-title">Movie Name</p>
+            <p class="movie-title">${transaction.movie_name}</p>
           </div>
           <div class="poster">
             <img src="${pageContext.request.contextPath}/Images/pic1.png"
@@ -39,9 +39,9 @@
                 <th>SEAT</th>
               </tr>
               <tr>
-                <td class="bigger">18</td>
+                <td class="bigger">${transaction.screen}</td>
                 <td class="bigger">H</td>
-                <td class="bigger">24</td>
+                <td class="bigger">${transaction.seats}</td>
               </tr>
             </table>
             <table class="info-table ticket-table">
@@ -51,9 +51,9 @@
                 <th>TIME</th>
               </tr>
               <tr>
-                <td>RS.120</td>
-                <td>4/13/21</td>
-                <td>19:30</td>
+                <td>RS.${transaction.total_price}</td>
+                <td>${transaction.date}</td>
+                <td>${transaction.start_time}</td>
               </tr>
             </table>
           </div>
