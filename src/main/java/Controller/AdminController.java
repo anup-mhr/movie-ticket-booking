@@ -8,10 +8,12 @@ import Model.Movie;
 import Model.Screens;
 import Model.ShowTime;
 import Model.ShowtimeMovieScreen;
+import Model.Transaction;
 import Service.Impl.AdminServiceImpl;
 import Service.Impl.MovieServiceImpl;
 import Service.Impl.ScreensServiceImpl;
 import Service.Impl.ShowtimeServiceImpl;
+import Service.Impl.TransactionServiceImpl;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -210,7 +212,14 @@ public class AdminController extends HttpServlet {
 
         //TRANSACTION START
         if (page.equalsIgnoreCase("transactions-movie")) {
+            int movie_id = Integer.parseInt(request.getParameter("movie_id"));
+            
+            Movie movie = new MovieServiceImpl().getMovieById(movie_id);
+            List<Transaction> transactionList = new TransactionServiceImpl().getTransactionsByMovieId(movie.getTitle());
+            
             getHeaderInfo(request, response);
+            
+            request.setAttribute("transactionList", transactionList);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/transactions-movie.jsp");
             rd.forward(request, response);

@@ -7,7 +7,10 @@ package Service.Impl;
 import DBConnection.DBConnection;
 import Model.Transaction;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,5 +33,30 @@ public class TransactionServiceImpl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Transaction> getTransactionsByMovieId(String movie_name) {
+        List<Transaction> transactions = new ArrayList<Transaction>();
+        String query = "select * from transaction where movie_name=?";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        try {
+            preparedStatement.setString(1, movie_name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Transaction transaction = new Transaction();
+                transaction.setTranx_id(resultSet.getInt("tranx_id"));
+                transaction.setMovie_name(resultSet.getString("movie_name"));
+                transaction.setDate(resultSet.getString("date"));
+                transaction.setScreen(resultSet.getString("screen"));
+                transaction.setSeats(resultSet.getString("seats"));
+                transaction.setStart_time(resultSet.getString("start_time"));
+                transaction.setTotal_price(resultSet.getString("total_price"));
+                transaction.setUsername(resultSet.getString("username"));
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
     }
 }

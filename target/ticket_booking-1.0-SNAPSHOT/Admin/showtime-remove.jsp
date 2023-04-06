@@ -316,7 +316,7 @@
                                         <c:forEach items="${showtimeList}" var="showtime">
                                         <tr>
                                             <th scope="row">${showtime.showtime_id}</th>
-                                            <td><img src="${showtime.picture}" alt="" style="width: 100px; height: 100px;"></td>
+                                            <td><img src="Images/${showtime.picture}" alt="" style="width: 100px; height: 100px;"></td>
                                             <td>${showtime.title}</td>
                                             <td>${showtime.name}</td>
                                             <td>${showtime.start_time}</td>

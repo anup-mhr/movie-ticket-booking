@@ -144,6 +144,7 @@ public class MovieServiceImpl implements MovieService {
             e.printStackTrace();
         } finally {
             dbConnect.CloseConnection();
+
         }
         return movie;
     }

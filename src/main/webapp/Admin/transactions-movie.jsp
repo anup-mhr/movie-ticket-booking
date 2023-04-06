@@ -40,7 +40,7 @@
 
     <body>
 
-         <!-- ======= Header ======= -->
+        <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
 
             <div class="d-flex align-items-center justify-content-between">
@@ -255,11 +255,11 @@
                     </a>
                     <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
                         <c:forEach items="${movies}" var="movie">
-                        <li>
-                            <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
-                                <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
-                            </a>
-                        </li>
+                            <li>
+                                <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
+                                    <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
+                                </a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </li><!-- End Transactions Nav -->
@@ -309,73 +309,21 @@
                                             <th scope="col">Date</th>
                                             <th scope="col">Showtime</th>
                                             <th scope="col">Seat</th>
+                                            <th scope="col">Total price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                        </tr>
+                                        <c:forEach items="${transactionList}" var="transaction">
+                                            <tr>
+                                                <th scope="row">${transaction.tranx_id}</th>
+                                                <td>${transaction.username}</td>
+                                                <td>${transaction.movie_name}</td>
+                                                <td>${transaction.date}</td>
+                                                <td>${transaction.start_time}</td>
+                                                <td>${transaction.seats}</td>
+                                                <td>${transaction.total_price}</td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                                 <!-- End Table with stripped rows -->
