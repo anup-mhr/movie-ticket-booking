@@ -255,11 +255,11 @@
                     </a>
                     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <c:forEach items="${movies}" var="movie">
-                        <li>
-                            <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
-                                <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
-                            </a>
-                        </li>
+                            <li>
+                                <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
+                                    <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
+                                </a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </li><!-- End Transactions Nav -->
@@ -357,7 +357,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </div>
                                             <div class="ps-3">
-                                                <h6>$3,264</h6>
+                                                <h6>Rs.3,264</h6>
                                                 <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                                             </div>
@@ -404,89 +404,7 @@
 
                             </div><!-- End Customers Card -->
 
-                            <!-- Reports -->
-                            <div class="col-12">
-                                <div class="card">
-
-                                    <div class="filter">
-                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                            <li class="dropdown-header text-start">
-                                                <h6>Filter</h6>
-                                            </li>
-
-                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <h5 class="card-title">Reports <span>/Today</span></h5>
-
-                                        <!-- Line Chart -->
-                                        <div id="reportsChart"></div>
-
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", () => {
-                                                new ApexCharts(document.querySelector("#reportsChart"), {
-                                                    series: [{
-                                                            name: 'Sales',
-                                                            data: [31, 40, 28, 51, 42, 82, 56],
-                                                        }, {
-                                                            name: 'Revenue',
-                                                            data: [11, 32, 45, 32, 34, 52, 41]
-                                                        }, {
-                                                            name: 'Customers',
-                                                            data: [15, 11, 32, 18, 9, 24, 11]
-                                                        }],
-                                                    chart: {
-                                                        height: 350,
-                                                        type: 'area',
-                                                        toolbar: {
-                                                            show: false
-                                                        },
-                                                    },
-                                                    markers: {
-                                                        size: 4
-                                                    },
-                                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                                    fill: {
-                                                        type: "gradient",
-                                                        gradient: {
-                                                            shadeIntensity: 1,
-                                                            opacityFrom: 0.3,
-                                                            opacityTo: 0.4,
-                                                            stops: [0, 90, 100]
-                                                        }
-                                                    },
-                                                    dataLabels: {
-                                                        enabled: false
-                                                    },
-                                                    stroke: {
-                                                        curve: 'smooth',
-                                                        width: 2
-                                                    },
-                                                    xaxis: {
-                                                        type: 'datetime',
-                                                        categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                                                    },
-                                                    tooltip: {
-                                                        x: {
-                                                            format: 'dd/MM/yy HH:mm'
-                                                        },
-                                                    }
-                                                }).render();
-                                            });
-                                        </script>
-                                        <!-- End Line Chart -->
-
-                                    </div>
-
-                                </div>
-                            </div><!-- End Reports -->
-
-                            <!-- Recent Sales -->
+                            <!-- Now Showing -->
                             <div class="col-12">
                                 <div class="card recent-sales overflow-auto">
 
@@ -498,332 +416,177 @@
                                             </li>
 
                                             <li><a class="dropdown-item" href="#">Today</a></li>
-                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                                            <li><a class="dropdown-item" href="#">Tomorrow</a></li>
+                                            <li><a class="dropdown-item" href="#">Next Day</a></li>
                                         </ul>
                                     </div>
 
                                     <div class="card-body">
-                                        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                                        <h5 class="card-title">Now Showing <span>| Today</span></h5>
 
                                         <table class="table table-borderless datatable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Customer</th>
-                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Movie</th>
+                                                    <th scope="col">Name</th>
                                                     <th scope="col">Price</th>
                                                     <th scope="col">Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#">#2457</a></th>
-                                                    <td>Brandon Jacob</td>
-                                                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                                                    <td>$64</td>
-                                                    <td><span class="badge bg-success">Approved</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#">#2147</a></th>
-                                                    <td>Bridie Kessler</td>
-                                                    <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                                    <td>$47</td>
-                                                    <td><span class="badge bg-warning">Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#">#2049</a></th>
-                                                    <td>Ashleigh Langosh</td>
-                                                    <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                                                    <td>$147</td>
-                                                    <td><span class="badge bg-success">Approved</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#">#2644</a></th>
-                                                    <td>Angus Grady</td>
-                                                    <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                                                    <td>$67</td>
-                                                    <td><span class="badge bg-danger">Rejected</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#">#2644</a></th>
-                                                    <td>Raheem Lehner</td>
-                                                    <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                                                    <td>$165</td>
-                                                    <td><span class="badge bg-success">Approved</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                <c:forEach  items="${moviesReleased}" var="movie">
+                                                    <tr>
+                                                        <th scope="row"><a href="#">${movie.movie_id}</a></th>
+                                                        <th scope="row"><a href="#"><img src="Images/${movie.picture}" alt="" style="max-width: 60px;"></a></th>
+                                                        <td><a href="#" class="text-primary fw-bold">${movie.title}</a></td>
+                                                        <td>Rs. 150</td>
+                                                        <td><span class="badge bg-success">Showing</span></td>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
 
                                     </div>
+                                </div><!-- End Recent Sales -->
 
-                                </div>
-                            </div><!-- End Recent Sales -->
+                                <!-- Top Selling -->
+                                <div class="col-12">
+                                    <div class="card top-selling overflow-auto">
 
-                            <!-- Top Selling -->
-                            <div class="col-12">
-                                <div class="card top-selling overflow-auto">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filter</h6>
+                                                </li>
 
-                                    <div class="filter">
-                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                            <li class="dropdown-header text-start">
-                                                <h6>Filter</h6>
-                                            </li>
+                                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                                            </ul>
+                                        </div>
 
-                                            <li><a class="dropdown-item" href="#">Today</a></li>
-                                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                                        </ul>
-                                    </div>
+                                        <div class="card-body pb-0">
+                                            <h5 class="card-title">Top Selling <span>| Today</span></h5>
 
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Preview</th>
+                                                        <th scope="col">Movie</th>
+                                                        <th scope="col">Sold</th>
+                                                        <th scope="col">Revenue</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row"><a href="#"><img src="Images/Dungeons&Dragons-picture.jpg" alt=""></a></th>
+                                                        <td><a href="#" class="text-primary fw-bold">Dungeons & Dragons</a></td>
+                                                        <td class="fw-bold">114</td>
+                                                        <td>Rs.5,828</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><a href="#"><img src="Images/Bholaa-picture.jpg" alt=""></a></th>
+                                                        <td><a href="#" class="text-primary fw-bold">Bholaa :IN 3D</a></td>
+                                                        <td class="fw-bold">98</td>
+                                                        <td>Rs.4,508</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><a href="#"><img src="Images/Prasad-2-picture.jfif" alt=""></a></th>
+                                                        <td><a href="#" class="text-primary fw-bold">Prasad 2</a></td>
+                                                        <td class="fw-bold">74</td>
+                                                        <td>Rs.4,366</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><a href="#"><img src="Images/Prema-picture.jpeg" alt=""></a></th>
+                                                        <td><a href="#" class="text-primary fw-bold">Prema</a></td>
+                                                        <td class="fw-bold">63</td>
+                                                        <td>Rs.2,016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
 
-                                        <table class="table table-borderless">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Preview</th>
-                                                    <th scope="col">Product</th>
-                                                    <th scope="col">Price</th>
-                                                    <th scope="col">Sold</th>
-                                                    <th scope="col">Revenue</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                                                    <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                                                    <td>$64</td>
-                                                    <td class="fw-bold">124</td>
-                                                    <td>$5,828</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                                                    <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                                                    <td>$46</td>
-                                                    <td class="fw-bold">98</td>
-                                                    <td>$4,508</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                                                    <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                                                    <td>$59</td>
-                                                    <td class="fw-bold">74</td>
-                                                    <td>$4,366</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                                                    <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                                                    <td>$32</td>
-                                                    <td class="fw-bold">63</td>
-                                                    <td>$2,016</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                                                    <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                                                    <td>$79</td>
-                                                    <td class="fw-bold">41</td>
-                                                    <td>$3,239</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        </div>
 
                                     </div>
+                                </div><!-- End Top Selling -->
 
-                                </div>
-                            </div><!-- End Top Selling -->
-
-                        </div>
-                    </div><!-- End Left side columns -->
-
-                    <!-- Right side columns -->
-                    <div class="col-lg-4">
-
-                        <!-- Recent Activity -->
-                        <div class="card">
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
                             </div>
+                        </div><!-- End Left side columns -->
 
-                            <div class="card-body">
-                                <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+                        <!-- Right side columns -->
+                        <div class="col-lg-4">
 
-                                <div class="activity">
+                            <div class="card top-selling overflow-auto">
 
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">32 min</div>
-                                        <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                        <div class="activity-content">
-                                            Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
-                                        </div>
-                                    </div><!-- End activity item-->
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">56 min</div>
-                                        <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                                        <div class="activity-content">
-                                            Voluptatem blanditiis blanditiis eveniet
-                                        </div>
-                                    </div><!-- End activity item-->
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title">Comming Soon </h5>
 
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">2 hrs</div>
-                                        <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                                        <div class="activity-content">
-                                            Voluptates corrupti molestias voluptatem
-                                        </div>
-                                    </div><!-- End activity item-->
-
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">1 day</div>
-                                        <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                                        <div class="activity-content">
-                                            Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                                        </div>
-                                    </div><!-- End activity item-->
-
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">2 days</div>
-                                        <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                                        <div class="activity-content">
-                                            Est sit eum reiciendis exercitationem
-                                        </div>
-                                    </div><!-- End activity item-->
-
-                                    <div class="activity-item d-flex">
-                                        <div class="activite-label">4 weeks</div>
-                                        <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                                        <div class="activity-content">
-                                            Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                                        </div>
-                                    </div><!-- End activity item-->
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Movie</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach  items="${moviesComming}" var="movie">
+                                                <tr>
+                                                    <th scope="row"><a href="#"><img src="Images/${movie.picture}" alt=""></a></th>
+                                                    <td><a href="#" class="text-primary fw-bold">${movie.title}</a></td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
 
                                 </div>
 
                             </div>
-                        </div><!-- End Recent Activity -->
 
-                        <!-- Website Traffic -->
-                        <div class="card">
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
+                        </div><!-- End Right side columns -->
 
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
-                            </div>
+                    </div>
+                </section>
 
-                            <div class="card-body pb-0">
-                                <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+            </main><!-- End #main -->
 
-                                <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-
-                                <script>
-                                    document.addEventListener("DOMContentLoaded", () => {
-                                        echarts.init(document.querySelector("#trafficChart")).setOption({
-                                            tooltip: {
-                                                trigger: 'item'
-                                            },
-                                            legend: {
-                                                top: '5%',
-                                                left: 'center'
-                                            },
-                                            series: [{
-                                                    name: 'Access From',
-                                                    type: 'pie',
-                                                    radius: ['40%', '70%'],
-                                                    avoidLabelOverlap: false,
-                                                    label: {
-                                                        show: false,
-                                                        position: 'center'
-                                                    },
-                                                    emphasis: {
-                                                        label: {
-                                                            show: true,
-                                                            fontSize: '18',
-                                                            fontWeight: 'bold'
-                                                        }
-                                                    },
-                                                    labelLine: {
-                                                        show: false
-                                                    },
-                                                    data: [{
-                                                            value: 1048,
-                                                            name: 'Search Engine'
-                                                        },
-                                                        {
-                                                            value: 735,
-                                                            name: 'Direct'
-                                                        },
-                                                        {
-                                                            value: 580,
-                                                            name: 'Email'
-                                                        },
-                                                        {
-                                                            value: 484,
-                                                            name: 'Union Ads'
-                                                        },
-                                                        {
-                                                            value: 300,
-                                                            name: 'Video Ads'
-                                                        }
-                                                    ]
-                                                }]
-                                        });
-                                    });
-                                </script>
-
-                            </div>
-                        </div><!-- End Website Traffic -->
-
-                    </div><!-- End Right side columns -->
-
+            <!-- ======= Footer ======= -->
+            <footer id="footer" class="footer">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Movie Booking</span></strong>. All Rights Reserved
                 </div>
-            </section>
+                <div class="credits">
+                    Designed by <a href="#">Anup Maharjan</a>
+                </div>
+            </footer><!-- End Footer -->
 
-        </main><!-- End #main -->
+            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-        <!-- ======= Footer ======= -->
-        <footer id="footer" class="footer">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Movie Booking</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                Designed by <a href="#">Anup Maharjan</a>
-            </div>
-        </footer><!-- End Footer -->
+            <!-- Vendor JS Files -->
+            <script src="Admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+            <script src="Admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="Admin/assets/vendor/chart.js/chart.umd.js"></script>
+            <script src="Admin/assets/vendor/echarts/echarts.min.js"></script>
+            <script src="Admin/assets/vendor/quill/quill.min.js"></script>
+            <script src="Admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+            <!--<script src="assets/vendor/tinymce/tinymce.min.js"></script>-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.1/tinymce.min.js" integrity="sha512-in/06qQzsmVw+4UashY2Ta0TE3diKAm8D4aquSWAwVwsmm1wLJZnDRiM6e2lWhX+cSqJXWuodoqUq91LlTo1EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <!--<script src="Admin/assets/vendor/php-email-form/validate.js"></script>-->
 
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+            <!-- Template Main JS File -->
+            <script src="Admin/assets/js/main.js"></script>
 
-        <!-- Vendor JS Files -->
-        <script src="Admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-        <script src="Admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="Admin/assets/vendor/chart.js/chart.umd.js"></script>
-        <script src="Admin/assets/vendor/echarts/echarts.min.js"></script>
-        <script src="Admin/assets/vendor/quill/quill.min.js"></script>
-        <script src="Admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-        <!--<script src="assets/vendor/tinymce/tinymce.min.js"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.1/tinymce.min.js" integrity="sha512-in/06qQzsmVw+4UashY2Ta0TE3diKAm8D4aquSWAwVwsmm1wLJZnDRiM6e2lWhX+cSqJXWuodoqUq91LlTo1EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="Admin/assets/vendor/php-email-form/validate.js"></script>
+        </body>
 
-        <!-- Template Main JS File -->
-        <script src="Admin/assets/js/main.js"></script>
-
-    </body>
-
-</html>
+    </html>

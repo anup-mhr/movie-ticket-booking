@@ -62,11 +62,16 @@ public class AdminController extends HttpServlet {
             request.setAttribute("username", username);
             request.setAttribute("movies", movies);
 
+            get_home_info(request, response);
+
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/home.jsp");
             rd.forward(request, response);
         }
 
         if (page.equalsIgnoreCase("dashboard")) {
+
+            get_home_info(request, response);
+
             getHeaderInfo(request, response);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/home.jsp");
@@ -213,12 +218,12 @@ public class AdminController extends HttpServlet {
         //TRANSACTION START
         if (page.equalsIgnoreCase("transactions-movie")) {
             int movie_id = Integer.parseInt(request.getParameter("movie_id"));
-            
+
             Movie movie = new MovieServiceImpl().getMovieById(movie_id);
             List<Transaction> transactionList = new TransactionServiceImpl().getTransactionsByMovieId(movie.getTitle());
-            
+
             getHeaderInfo(request, response);
-            
+
             request.setAttribute("transactionList", transactionList);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/transactions-movie.jsp");
@@ -284,6 +289,14 @@ public class AdminController extends HttpServlet {
         request.setAttribute("username", username);
         request.setAttribute("movies", movies);
 
+    }
+
+    private static void get_home_info(HttpServletRequest request, HttpServletResponse response) {
+        List<Movie> moviesReleased = new MovieServiceImpl().getMoviesAfterRelease();
+        List<Movie> moviesComming = new MovieServiceImpl().getMoviesBeforeRelease();
+
+        request.setAttribute("moviesReleased", moviesReleased);
+        request.setAttribute("moviesComming", moviesComming);
     }
 
     @Override

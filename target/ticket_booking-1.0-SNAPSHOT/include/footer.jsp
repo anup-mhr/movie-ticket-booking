@@ -21,19 +21,23 @@
                     <p class="upper-title">Navigate</p>
                     <a href="${pageContext.request.contextPath}/UserController?page=AboutUs" class="upper-contains d-block">About us</a>
                     <a href="${pageContext.request.contextPath}/UserController?page=TicketRate" class="upper-contains d-block">Ticket Rate</a>
-<!--                    <a href="" class="upper-contains d-block">Contact us</a>-->
+                    <!--                    <a href="" class="upper-contains d-block">Contact us</a>-->
                 </div>
-<!--                <div class="upper-container">
-                    <p class="upper-title">Information</p>
-                    <a href="" class="upper-contains d-block">Regulation</a>
-                    <a href="" class="upper-contains d-block">Privacy & Policy</a>
-                    <a href="" class="upper-contains d-block">Contact us</a>
-                </div>-->
+                <!--                <div class="upper-container">
+                                    <p class="upper-title">Information</p>
+                                    <a href="" class="upper-contains d-block">Regulation</a>
+                                    <a href="" class="upper-contains d-block">Privacy & Policy</a>
+                                    <a href="" class="upper-contains d-block">Contact us</a>
+                                </div>-->
                 <div class="upper-container">
                     <p class="upper-title">AM Cinema</p>
                     <a href="" class="upper-contains d-block">AM Cinema City Pvt. Ltd.</a>
                     <a href="" class="upper-contains d-block">Kirtipur, Kathmandu</a>
                     <a href="" class="upper-contains d-block">Helpline: 9803874819 / 980346287</a>
+<!--                    <a href="" class="upper-contains d-block">Email: support@AMcinemas.com</a>-->
+                    <!--<a href="" class="upper-contains d-block mt-2" style="font-size:18px;font-weight: 500;">For Booking , Call Us at 4568700</a>-->
+                </div>
+                <div class="upper-container">
                     <a href="" class="upper-contains d-block">Email: support@AMcinemas.com</a>
                     <a href="" class="upper-contains d-block mt-2" style="font-size:18px;font-weight: 500;">For Booking , Call Us at 4568700</a>
                 </div>
