@@ -120,4 +120,16 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
     }
+
+    public void changePasswword(String username, String password) {
+        String query = "update customers set password=? where name=?";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        try {
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, username);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

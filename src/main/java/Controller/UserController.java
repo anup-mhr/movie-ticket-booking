@@ -76,8 +76,40 @@ public class UserController extends HttpServlet {
         }
 
         //FORGOT PASSWORD PROCESS
-        if (page.equalsIgnoreCase("forgotpassword")) {
+        if (page.equalsIgnoreCase("CheckUsername")) {
+            String username = request.getParameter("username");
+            boolean status = new UserServiceImpl().isUserExist(username);
 
+            if (!status) {
+                String statusMessage = "No user Found";
+
+                request.setAttribute("statusMessage", statusMessage);
+
+                RequestDispatcher rd = request.getRequestDispatcher("/Pages/home.jsp");
+                rd.forward(request, response);
+            }
+
+            request.setAttribute("username", username);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/Pages/reset-password.jsp");
+            rd.forward(request, response);
+
+        }
+
+        if (page.equalsIgnoreCase("resetPassword")) {
+            try {
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+
+                String hashedPassword = get_hash(password);
+
+                new UserServiceImpl().changePasswword(username, hashedPassword);
+                get_home_info(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("/Pages/home.jsp");
+                rd.forward(request, response);
+            } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         // SIGNUP PROCESS
@@ -290,12 +322,13 @@ public class UserController extends HttpServlet {
             HttpSession session = request.getSession(true);
             Transaction transaction = (Transaction) session.getAttribute("transaction");
             
+            Movie movie = new MovieServiceImpl().getMovieByName(transaction.getMovie_name());
             new TransactionServiceImpl().addTransaction(transaction);
-            
+
             session.removeAttribute("transaction");
 
             request.setAttribute("transaction", transaction);
-
+            request.setAttribute("movie_img", movie.getPoster());
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking-billing.jsp");
             rd.forward(request, response);
         }

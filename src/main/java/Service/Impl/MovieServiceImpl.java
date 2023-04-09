@@ -180,4 +180,33 @@ public class MovieServiceImpl implements MovieService {
         }
     }
 
+    public Movie getMovieByName(String movie_name) {
+        Movie movie = null;
+        String query = "select * from movies where title = ?;";
+        DBConnection dbConnect = new DBConnection();
+        try {
+            PreparedStatement preparedStatement = dbConnect.getStatement(query);
+            preparedStatement.setString(1, movie_name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                movie = new Movie();
+                movie.setMovie_id(resultSet.getInt("movie_id"));
+                movie.setTitle(resultSet.getString("title"));
+                movie.setDescription(resultSet.getString("description"));
+                movie.setRelease_date(resultSet.getString("release_date"));
+                movie.setVideo_url(resultSet.getString("video_url"));
+                movie.setCast(resultSet.getString("cast"));
+                movie.setDuration(resultSet.getString("duration"));
+                movie.setGene(resultSet.getString("gene"));
+                movie.setDirector(resultSet.getString("director"));
+                movie.setPicture(resultSet.getString("picture"));
+                movie.setPoster(resultSet.getString("poster"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
+            return movie;
+        }
+    }
 }

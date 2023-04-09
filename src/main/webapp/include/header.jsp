@@ -70,6 +70,7 @@
                     <button class="btn" type="submit">Login</button>
                 </div>
                 <span><a id="forgot-button">Forgot password?</a> or <a id="signup-button">Sign up</a></span><br>
+                <p id="close-btn" style="margin: 0;text-align: end;cursor: pointer;">close</p>
             </form>
         </div>
 
@@ -119,24 +120,26 @@
                 <div class="col-12">
                     <button class="btn" type="submit">Submit form</button>
                 </div>
+                <p id="close-btn" style="margin: 0;text-align: end;cursor: pointer;">close</p>
             </form>
         </div>
         <!-- End Signup form -->
 
         <!-- Forgot password Start -->
         <div id="forgot-form">
-            <form class="row g-3 needs-validation" novalidate action="forgotPassword" method="post">
+            <form class="row g-3 needs-validation" novalidate action="UserController?page=checkUsername" method="post">
                 <h3>Forgot Password</h3>
                 <div class="col-md-12">
-                    <label for="validationCustom03" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="validationCustom03" required>
+                    <label for="validationCustom03" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" id="validationCustom03" required>
                     <div class="invalid-feedback">
                         Please enter valid email 
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn" type="submit">Send code</button>
+                    <button class="btn" type="submit">Check Username</button>
                 </div>
+                <p id="close-btn" style="margin: 0;text-align: end;cursor: pointer;">close</p>
             </form>
         </div>
         <!-- End Forgot Password -->
@@ -180,7 +183,18 @@
             ForgotForm.style.display = "block";
             document.getElementById("overlay").style.display = "block";
         });
-        
+
+        //// Script to hide  form
+        let closeBtns = document.querySelectorAll("#close-btn");
+        closeBtns.forEach(function (closeBtn) {
+            closeBtn.addEventListener("click", function () {
+                loginForm.style.display = "none";
+                ForgotForm.style.display = "none";
+                SignupForm.style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             checkLoginStatus().then((isLoggedIn) => {
                 console.log(isLoggedIn);

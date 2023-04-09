@@ -1,5 +1,5 @@
 .ticket-body {
-  background-color: var(--theme-bg);
+  /*background-color: var(--theme-bg);*/
   font-family: "Yanone Kaffeesatz", sans-serif;
   /* font-weight: 600; */
 }
@@ -12,7 +12,7 @@ img {
 .ticket {
   width: 400px;
   height: 775px;
-  background-color: rgb(243, 235, 235);
+  background-color: #9f9a9a;
   margin: 25px auto;
   position: relative;
 }

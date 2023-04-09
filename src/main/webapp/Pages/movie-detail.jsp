@@ -71,7 +71,7 @@
                                 <a href="UserController?page=booking&showtime_id=${showtime.showtime_id}">${showtime.start_time}</a>
                             </c:if>
                         </c:forEach>
-                        <a href="">02:00 PM</a>
+                        <!--<a href="">02:00 PM</a>-->
 
                     </div>
                 </div>

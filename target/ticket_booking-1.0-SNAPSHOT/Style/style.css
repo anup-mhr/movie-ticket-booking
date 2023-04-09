@@ -194,6 +194,15 @@ header nav ul li a:hover {
     transform: translate(-50%, -50%);
     z-index: 9999;
 }
+#reset-form{
+    position: fixed;
+    width: 330px;
+    height: 300px;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
 #signup-form, #forgot-form  {
     display: none;
     position: fixed;
@@ -205,7 +214,7 @@ header nav ul li a:hover {
     z-index: 9999;
 }
 
-#login-form form, #signup-form form, #forgot-form form  {
+#login-form form, #signup-form form, #forgot-form form, #reset-form form  {
     background-color: whitesmoke;
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -213,7 +222,7 @@ header nav ul li a:hover {
     padding: 20px;
 }
 
-#login-form form h3, #signup-form form h3, #forgot-form form h3 {
+#login-form form h3, #signup-form form h3, #forgot-form form h3, #reset-form h3 {
     font-size: 32px;
     margin:5px 0;
     font-weight: 500;
@@ -237,7 +246,7 @@ header nav ul li a:hover {
     color: grey;
 }
 
-#login-form button, #signup-form button, #forgot-form button {
+#login-form button, #signup-form button, #forgot-form button, #reset-form button {
     margin: 5px 0;
     width: 100%;
     background-color: #F17272;
@@ -347,6 +356,10 @@ footer {
     padding: 60px 80px;
 }
 
+.upper-container a:hover{
+     color: #F17272;
+}
+
 .upper-title {
     font-size: 25px;
     font-weight: 600;
@@ -357,6 +370,7 @@ footer {
     font-size: 16;
     text-decoration: none;
 }
+
 
 .lower {
     font-weight: 500;
@@ -521,6 +535,9 @@ footer {
     border: 3px solid #ffffffb0;
     padding: 15px 20px;
     border-radius: 30px;
+}
+.room-time a:hover{
+    color: white;
 }
 
 /* *************** */

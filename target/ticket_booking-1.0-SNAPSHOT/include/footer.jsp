@@ -19,16 +19,16 @@
             <div class="upper d-flex justify-content-between width-auto">
                 <div class="upper-container">
                     <p class="upper-title">Navigate</p>
-                    <a href="" class="upper-contains d-block">About us</a>
-                    <a href="" class="upper-contains d-block">Ticket Rate</a>
-                    <a href="" class="upper-contains d-block">Contact us</a>
+                    <a href="${pageContext.request.contextPath}/UserController?page=AboutUs" class="upper-contains d-block">About us</a>
+                    <a href="${pageContext.request.contextPath}/UserController?page=TicketRate" class="upper-contains d-block">Ticket Rate</a>
+<!--                    <a href="" class="upper-contains d-block">Contact us</a>-->
                 </div>
-                <div class="upper-container">
+<!--                <div class="upper-container">
                     <p class="upper-title">Information</p>
                     <a href="" class="upper-contains d-block">Regulation</a>
                     <a href="" class="upper-contains d-block">Privacy & Policy</a>
                     <a href="" class="upper-contains d-block">Contact us</a>
-                </div>
+                </div>-->
                 <div class="upper-container">
                     <p class="upper-title">AM Cinema</p>
                     <a href="" class="upper-contains d-block">AM Cinema City Pvt. Ltd.</a>

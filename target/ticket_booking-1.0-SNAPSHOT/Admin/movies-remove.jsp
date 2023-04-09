@@ -318,7 +318,7 @@
                                             <c:forEach items="${movies}" var="movie">
                                             <tr>
                                                 <th scope="row">#${movie.movie_id}</th>
-                                                <td><img src="${movie.picture}" alt="alt"/></td>
+                                                <td><img src="Images/${movie.picture}" alt="alt" style="height: 100px; width: 100px;"/></td>
                                                 <td>${movie.title}</td>
                                                 <td>${movie.director}</td>
                                                 <!-- <td>$64</td> -->
