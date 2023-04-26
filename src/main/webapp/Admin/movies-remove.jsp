@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Remove movie</title>
+        <title>Update movie</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -219,13 +219,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="AdminController?page=movies-edit">
-                                <i class="bi bi-circle"></i><span>Edit Movie</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="AdminController?page=movies-remove">
-                                <i class="bi bi-circle"></i><span>Remove Movie</span>
+                            <a href="AdminController?page=movies-remove" class="active">
+                                <i class="bi bi-circle"></i><span>Update Movie</span>
                             </a>
                         </li>
                     </ul>
@@ -285,9 +280,9 @@
                 <h1>Movie name</h1> <!--update + connect database here-->
                 <nav>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="AdminController?page=dashboard">Home</a></li>
                         <li class="breadcrumb-item">Movie</li>
-                        <li class="breadcrumb-item active">Remove</li> 
+                        <li class="breadcrumb-item active">Update</li> 
                     </ol>
                 </nav>
             </div><!-- End Page Title -->
@@ -301,7 +296,7 @@
                             <div class="card recent-sales overflow-auto">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Remove Movie</h5>
+                                    <h5 class="card-title">Update Movie</h5>
 
                                     <table class="table table-borderless datatable">
                                         <thead>
@@ -311,7 +306,7 @@
                                                 <th scope="col">Movie</th>
                                                 <th scope="col">Director</th>
                                                 <!-- <th scope="col">Price</th> -->
-                                                <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -322,7 +317,8 @@
                                                 <td>${movie.title}</td>
                                                 <td>${movie.director}</td>
                                                 <!-- <td>$64</td> -->
-                                                <td><a href="AdminController?page=movies-removed&movieId=${movie.movie_id}"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
+                                                <td><a href="AdminController?page=movies-edit&movieId=${movie.movie_id}"><span class="badge bg-primary"><i class="bi bi-pencil-fill"></i> Edit</span></a>
+                                                <a href="AdminController?page=movies-removed&movieId=${movie.movie_id}"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
                                             </tr>
                                             </c:forEach>
                                         </tbody>

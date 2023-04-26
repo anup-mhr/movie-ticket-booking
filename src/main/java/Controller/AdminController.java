@@ -113,13 +113,16 @@ public class AdminController extends HttpServlet {
 
             new MovieServiceImpl().addMovie(movie);
             getHeaderInfo(request, response);
-
+            
+            String status = "Movie AddedSuccessfully";
+            request.setAttribute("status", status);
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/movies-add.jsp");
             rd.forward(request, response);
         }
 
         if (page.equalsIgnoreCase("movies-edit")) {
-            Movie movie = new MovieServiceImpl().getMovieById(1);
+            int movie_id = Integer.parseInt(request.getParameter("movieId"));
+            Movie movie = new MovieServiceImpl().getMovieById(movie_id);
 
             request.setAttribute("movie", movie);
 

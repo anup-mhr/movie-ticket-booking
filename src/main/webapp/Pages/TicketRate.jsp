@@ -41,8 +41,8 @@
             <p>
                 FOR ADVANCE BOOKING CALL:- 01-4011643 / 4011645 
 
-                Tickets once sold are neither refundable nor exchangable (For more details please read security procedure)
-                Kindly note that schedule & tickets price are subject to change by Management decision.
+<!--                Tickets once sold are neither refundable nor exchangable (For more details please read security procedure)
+                Kindly note that schedule & tickets price are subject to change by Management decision.-->
             </p>
         </section>
         <%@include file="/include/footer.jsp" %>

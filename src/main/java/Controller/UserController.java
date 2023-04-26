@@ -252,11 +252,13 @@ public class UserController extends HttpServlet {
 
         if (page.equalsIgnoreCase("booking")) {
             int showtime_id = Integer.parseInt(request.getParameter("showtime_id"));
-
+            
+            ShowtimeMovieScreen showtime = new ShowtimeServiceImpl().getShowtimeDetailsById(showtime_id);
             List<Seats> seats = new SeatServiceImpl().getSeats();
 
             request.setAttribute("seats", seats);
             request.setAttribute("showtime_id", showtime_id);
+            request.setAttribute("showtimeDetails", showtime);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Pages/booking.jsp");
             rd.forward(request, response);

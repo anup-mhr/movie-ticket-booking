@@ -25,12 +25,11 @@
             <div class="ticket" id="content">
                 <!--<div class="holes-top"></div>-->
                 <div class="title">
-                    <p class="cinema">MyShowz Entertainment</p>
+                    <p class="cinema">AM Movies</p>
                     <p class="movie-title">${transaction.movie_name}</p>
                 </div>
                 <div class="poster">
-                    <!--<img src="${pageContext.request.contextPath}/Images/${movie_img}"-->
-                         <!--alt="Movie: Only God Forgives" />-->
+                    <img src="${pageContext.request.contextPath}/Images/${movie_img}" alt="Movie: ${transaction.movie_name}" style="width: 100%;height: 200px;" />
                 </div>
                 <div class="info" >
                     <table class="info-table ticket-table">
@@ -209,17 +208,17 @@
                 </div>
             </div>
         </div>
-
-        <button id="download-btn">Download PDF</button>
-
+        <div style="text-align: center; margin: 10px auto;">                    
+            <button id="download-btn">Download PDF</button>
+        </div>
         <script>
             function onClick() {
-                var content = document.getElementById("content").innerHTML;
-                var pdf = new jsPDF('p', 'pt', 'letter');
+                let content = document.getElementById("content").innerHTML;
+                let pdf = new jsPDF('p', 'pt', 'letter');
 
                 // Get the width and height of the text content
-                var textWidth = pdf.getTextWidth(content);
-                var textHeight = pdf.getTextDimensions(content).h;
+                let textWidth = pdf.getTextWidth(content);
+                let textHeight = pdf.getTextDimensions(content).h;
 
                 // Set the canvas size to match the content size
                 pdf.canvas.height = textHeight + 20; // add some padding
@@ -227,11 +226,11 @@
 
                 pdf.fromHTML(content);
 
-                pdf.save('test.pdf');
+                pdf.save('bill.pdf');
             }
             ;
 
-            var element = document.getElementById("download-btn");
+            let element = document.getElementById("download-btn");
             element.addEventListener("click", onClick);
         </script>
         <%@include file="/include/footer.jsp" %>

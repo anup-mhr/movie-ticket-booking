@@ -34,10 +34,10 @@
                 </div>
             </div>
             <div class="confirm-booking" style="width: 55%;">
-                <h6>Your Sopping Cart</h6>
+                <h6>Your Shopping Cart</h6>
                 <div class="confirm-booking-body">
                     <ul>
-                        <li class="confirm-booking-body-calculate d-flex justify-content-between py-3"><label>Seats</label><span class="confirm-booking-body-span"><c:out value="${totalSeats}"/>*</span><span class="confirm-booking-body-span">Rs. 150.00</span></li>
+                        <li class="confirm-booking-body-calculate d-flex justify-content-between py-3"><label>Seats</label><span class="confirm-booking-body-span"><c:out value="${totalSeats} "/>*</span><span class="confirm-booking-body-span">Rs. 150.00</span></li>
                         <li class="confirm-booking-body-calculate d-flex justify-content-between py-3"><label>Sub total</label><span class="confirm-booking-body-span">Rs. <c:out value="${final_price}"/>0</span></li>
                         <li class="d-flex justify-content-between py-3"><label>Total</label><span class="confirm-booking-body-span">Rs. <c:out value="${final_price}"/>0</span></li>
                     </ul>

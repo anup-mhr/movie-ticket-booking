@@ -23,7 +23,6 @@ public class DBConnection {
             String name = "root";
             String password = "";
             this.connection = DriverManager.getConnection(dbUrl, name, password);
-            System.out.println("DB Connected!!");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -40,7 +39,6 @@ public class DBConnection {
             e.printStackTrace();
             
         }
-        
     }
 
     public PreparedStatement getStatement(String query){
@@ -51,9 +49,6 @@ public class DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        finally{
-//            connection.close();
-//        }
         
         return preparedStatement;
     }

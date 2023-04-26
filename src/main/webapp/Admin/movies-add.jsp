@@ -36,12 +36,12 @@
         <!-- Template Main CSS File -->
         <link href="Admin/assets/css/style.css" rel="stylesheet">
 
-        
+
     </head>
 
     <body>
 
-         <!-- ======= Header ======= -->
+        <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
 
             <div class="d-flex align-items-center justify-content-between">
@@ -215,18 +215,14 @@
                     </a>
                     <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
                         <li>
-                            <a href="AdminController?page=movies-add">
+                            <a href="AdminController?page=movies-add" class="active">
                                 <i class="bi bi-circle"></i><span>Add Movie</span>
                             </a>
                         </li>
                         <li>
-                            <a href="AdminController?page=movies-edit">
-                                <i class="bi bi-circle"></i><span>Edit Movie</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="AdminController?page=movies-remove">
-                                <i class="bi bi-circle"></i><span>Remove Movie</span>
+                                <i class="bi bi-circle"></i><span>Update Movie</span>
                             </a>
                         </li>
                     </ul>
@@ -256,11 +252,11 @@
                     </a>
                     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <c:forEach items="${movies}" var="movie">
-                        <li>
-                            <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
-                                <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
-                            </a>
-                        </li>
+                            <li>
+                                <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
+                                    <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
+                                </a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </li><!-- End Transactions Nav -->
@@ -293,6 +289,7 @@
             </div><!-- End Page Title -->
 
             <section class="section">
+                ${status}
                 <div class="row">
                     <div class="col-lg-12">
 
@@ -351,16 +348,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" placeholder="Picture" name="picture">
-                                            <label for="floatingName">Picture</label>
-                                        </div>
+                                        <label  for="floatingName">Picture: </label>
+                                        <input type="file" class="form-control" id="floatingName" placeholder="Picture"  name="picture">
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" placeholder="Poster" name="poster">
-                                            <label for="floatingName">Poster</label>
-                                        </div>
+                                        <label for="floatingName">Poster</label>
+                                        <input type="file" class="form-control" id="floatingName" placeholder="Poster" name="poster">
                                     </div>
 
                                     <div class="text-center">
@@ -392,7 +385,7 @@
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
 
-         <!-- Vendor JS Files -->
+        <!-- Vendor JS Files -->
         <script src="Admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
         <script src="Admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="Admin/assets/vendor/chart.js/chart.umd.js"></script>

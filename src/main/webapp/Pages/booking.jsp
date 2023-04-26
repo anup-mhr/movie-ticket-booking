@@ -48,9 +48,10 @@
 
         <section class="movie-booking width-auto">
             <div class="movie-booking-details">
-                <span>Audi A- Chakka Panja</span>
-                <span>Tue 2 Mar</span>
-                <span>11:00 AM</span>
+                <span>${showtimeDetails.name}- ${showtimeDetails.title}</span>
+                <span>Sat 29 Apr</span>
+                <span>${showtimeDetails.start_time}</span>
+                <!--<span>11:00 AM</span>-->
             </div>
             <div class="screen-box">
                 <div class="screen">Screen</div>

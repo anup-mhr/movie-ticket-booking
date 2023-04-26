@@ -219,13 +219,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="AdminController?page=movies-edit">
-                                <i class="bi bi-circle"></i><span>Edit Movie</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="AdminController?page=movies-remove">
-                                <i class="bi bi-circle"></i><span>Remove Movie</span>
+                                <i class="bi bi-circle"></i><span>Update Movie</span>
                             </a>
                         </li>
                     </ul>

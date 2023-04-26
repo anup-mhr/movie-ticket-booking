@@ -219,13 +219,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="AdminController?page=movies-edit">
-                                <i class="bi bi-circle"></i><span>Edit Movie</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="AdminController?page=movies-remove">
-                                <i class="bi bi-circle"></i><span>Remove Movie</span>
+                                <i class="bi bi-circle"></i><span>Update Movie</span>
                             </a>
                         </li>
                     </ul>
@@ -324,68 +320,6 @@
                                             <td><a href="AdminController?page=showtime-removed&showtime_id=${showtime.showtime_id}"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
                                         </tr>
                                         </c:forEach>
-<!--                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>                  </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Brandon Jacob</td>
-                                            <td>Designer</td>
-                                            <td>28</td>
-                                            <td>2016-05-25</td>
-                                            <td>2016-05-25</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Bridie Kessler</td>
-                                            <td>Developer</td>
-                                            <td>35</td>
-                                            <td>2014-12-05</td>
-                                            <td>2014-12-05</td>
-                                            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                        </tr>-->
                                     </tbody>
                                 </table>
                                 <!-- End Table with stripped rows -->

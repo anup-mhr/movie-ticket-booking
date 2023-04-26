@@ -427,7 +427,7 @@ footer {
 .ticket {
     background-color: #701313;
     color: white;
-    padding: 50px 30px;
+    padding: 0 30px;
     border-radius: 25px;
 }
 
@@ -471,7 +471,7 @@ footer {
 
 .movie-details-container img {
     width: 35%;
-    padding-right: 100px;
+    height: 500px;
 }
 
 .movie-details-container {
