@@ -23,7 +23,6 @@
         <%@include file="/include/header.jsp" %>
         <div  class="ticket-body">
             <div class="ticket" id="content">
-                <!--<div class="holes-top"></div>-->
                 <div class="title">
                     <p class="cinema">AM Movies</p>
                     <p class="movie-title">${transaction.movie_name}</p>
@@ -57,7 +56,6 @@
                         </tr>
                     </table>
                 </div>
-                <!--<div class="holes-lower"></div>-->
                 <div class="serial">
                     <table class="barcode ticket-table">
                         <tr>

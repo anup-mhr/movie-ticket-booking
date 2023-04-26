@@ -17,61 +17,7 @@ img {
   position: relative;
 }
 
-.holes-top {
-  height: 50px;
-  width: 50px;
-  background-color: var(--theme-bg);
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  margin-left: -25px;
-  top: -25px;
-}
 
-.holes-top:before,
-.holes-top:after {
-  content: "";
-  height: 50px;
-  width: 50px;
-  background-color: var(--theme-bg);
-  position: absolute;
-  border-radius: 50%;
-}
-
-.holes-top:before {
-  left: -200px;
-}
-
-.holes-top:after {
-  left: 200px;
-}
-
-.holes-lower {
-  position: relative;
-  margin-right: 25px;
-  margin-left: 25px;
-  border: 1px dashed var(--theme-bg);
-}
-
-.holes-lower:before,
-.holes-lower:after {
-  content: "";
-  height: 50px;
-  width: 50px;
-  background-color: var(--theme-bg);
-  position: absolute;
-  border-radius: 50%;
-}
-
-.holes-lower:before {
-  top: -25px;
-  left: -50px;
-}
-
-.holes-lower:after {
-  top: -25px;
-  left: 350px;
-}
 
 .title {
   text-align: center;
