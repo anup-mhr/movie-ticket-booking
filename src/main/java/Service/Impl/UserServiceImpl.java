@@ -56,7 +56,8 @@ public class UserServiceImpl implements UserService {
     public User getUser(String name) {
         User User = null;
         String query = "select * from customers where name=?";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
+        PreparedStatement preparedStatement = dbConnect.getStatement(query);
         try {
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -70,6 +71,8 @@ public class UserServiceImpl implements UserService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
         return User;
     }
@@ -77,7 +80,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insertUser(User User) {
         String query = "insert into customers(name, email, password) values(?,?,?)";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
+        PreparedStatement preparedStatement = dbConnect.getStatement(query);
         try {
             preparedStatement.setString(1, User.getName());
             preparedStatement.setString(2, User.getEmail());
@@ -85,6 +89,8 @@ public class UserServiceImpl implements UserService {
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
     }
 
@@ -92,7 +98,8 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserList() {
         List<User> users = new ArrayList<User>();
         String query = "select * from customers";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
+        PreparedStatement preparedStatement = dbConnect.getStatement(query);
         try {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -105,6 +112,8 @@ public class UserServiceImpl implements UserService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
         return users;
     }
@@ -112,24 +121,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int customer_id) {
         String query = "delete from customers where customer_id = ?";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
+        PreparedStatement preparedStatement = dbConnect.getStatement(query);
         try {
             preparedStatement.setInt(1, customer_id);
             preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
     }
 
     public void changePasswword(String username, String password) {
         String query = "update customers set password=? where name=?";
-        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        DBConnection dbConnect = new DBConnection();
+        PreparedStatement preparedStatement = dbConnect.getStatement(query);
         try {
             preparedStatement.setString(1, password);
             preparedStatement.setString(2, username);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            dbConnect.CloseConnection();
         }
     }
 }

@@ -113,7 +113,7 @@ public class AdminController extends HttpServlet {
 
             new MovieServiceImpl().addMovie(movie);
             getHeaderInfo(request, response);
-            
+
             String status = "Movie AddedSuccessfully";
             request.setAttribute("status", status);
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/movies-add.jsp");
@@ -259,17 +259,17 @@ public class AdminController extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher("/Admin/users-profile.jsp");
                 rd.forward(request, response);
+            } else {
+                new AdminServiceImpl().UpdateAdminPassword(newpassword, username);
+
+                String changeMessage = "Password Changed";
+                request.setAttribute("changeMessage", changeMessage);
+
+                getHeaderInfo(request, response);
+
+                RequestDispatcher rd = request.getRequestDispatcher("/Admin/users-profile.jsp");
+                rd.forward(request, response);
             }
-
-            new AdminServiceImpl().UpdateAdminPassword(newpassword, username);
-
-            String changeMessage = "Password Changed";
-            request.setAttribute("changeMessage", changeMessage);
-
-            getHeaderInfo(request, response);
-
-            RequestDispatcher rd = request.getRequestDispatcher("/Admin/users-profile.jsp");
-            rd.forward(request, response);
         }
 
         //LOGOUT START
