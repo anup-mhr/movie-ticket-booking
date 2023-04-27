@@ -284,67 +284,71 @@
                             <div class="card-body">
                                 <h5 class="card-title">Edit Movie</h5>
 
-                                <!-- Add Movie Form -->
-                                <form class="row g-3">
+                                <!-- Edit Movie Form -->
+                                <form class="row g-3" action="AdminController?page=movies-updated&movie_id=${movie.movie_id}" method="post"  enctype="multipart/form-data">
                                     <div class="col-md-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" value="${movie.title}">
+                                            <input type="text" class="form-control" id="floatingName" value="${movie.title}" name="title">
                                             <label for="floatingName">Movie Title</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Description" id="floatingTextarea" style="height: 100px;">${movie.description}</textarea>
+                                            <textarea class="form-control" placeholder="Description" id="floatingTextarea" style="height: 100px;" name="description">${movie.description}</textarea>
                                             <label for="floatingTextarea">Description</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" placeholder="Director" value="${movie.director}">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Director" value="${movie.director}" name="director" >
                                             <label for="floatingName">Director</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" placeholder="Casts" value="${movie.cast}">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Casts" value="${movie.cast}" name="casts">
                                             <label for="floatingName">Casts</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="date" class="form-control" id="floatingDate" value="${movie.release_date}">
+                                            <input type="date" class="form-control" id="floatingDate" value="${movie.release_date}" name="releaseDate">
                                             <label for="floatingDate">Released Date</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingTime" value="${movie.duration}">
+                                            <input type="text" class="form-control" id="floatingTime" value="${movie.duration}" name="duration">
                                             <label for="floatingTime">Duration</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" placeholder="Genre" value="${movie.gene}">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Genre" value="${movie.gene}" name="genre">
                                             <label for="floatingName">Genre</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" placeholder="Trailer url" value="${movie.video_url}">
+                                            <input type="text" class="form-control" id="floatingName" placeholder="Trailer url" value="${movie.video_url}" name="trailer_url">
                                             <label for="floatingName">Trailer url</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating">
+                                        <label  for="floatingName">Picture: </label>
+                                        <input type="file" class="form-control" id="floatingName" placeholder="Picture"  name="picture" value="${movie.picture}"  name="picture">
+<!--                                        <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName" placeholder="Picture" value="${movie.picture}">
                                             <label for="floatingName">Picture</label>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating">
+                                        <label for="floatingName">Poster</label>
+                                        <input type="file" class="form-control" id="floatingName" placeholder="Poster" name="poster" value="${movie.poster}"  name="poster">
+<!--                                        <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName" placeholder="Poster" value="${movie.poster}">
                                             <label for="floatingName">Poster</label>
-                                        </div>
+                                        </div>-->
                                     </div>
 
                                     <div class="text-center">

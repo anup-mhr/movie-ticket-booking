@@ -290,7 +290,7 @@
                                 <h5 class="card-title">Add New Movie</h5>
 
                                 <!-- Add Movie Form -->
-                                <form class="row g-3" action="AdminController?page=movies-added" method="post">
+                                <form class="row g-3" action="AdminController?page=movies-added" method="post" enctype="multipart/form-data">
                                     <div class="col-md-12">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingName" placeholder="Your Name" name="title">

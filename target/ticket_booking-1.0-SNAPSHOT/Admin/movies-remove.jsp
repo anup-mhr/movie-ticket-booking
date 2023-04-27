@@ -32,7 +32,7 @@
 
     <body>
 
-         <!-- ======= Header ======= -->
+        <!-- ======= Header ======= -->
         <header id="header" class="header fixed-top d-flex align-items-center">
 
             <div class="d-flex align-items-center justify-content-between">
@@ -242,11 +242,11 @@
                     </a>
                     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <c:forEach items="${movies}" var="movie">
-                        <li>
-                            <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
-                                <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
-                            </a>
-                        </li>
+                            <li>
+                                <a href="AdminController?page=transactions-movie&movie_id=${movie.movie_id}">
+                                    <i class="bi bi-circle"></i><span>${movie.title}</span>    <!--  Update with database  -->
+                                </a>
+                            </li>
                         </c:forEach>
                     </ul>
                 </li><!-- End Transactions Nav -->
@@ -302,16 +302,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <c:set var="count" value="1"/>
                                             <c:forEach items="${movies}" var="movie">
-                                            <tr>
-                                                <th scope="row">#${movie.movie_id}</th>
-                                                <td><img src="Images/${movie.picture}" alt="alt" style="height: 100px; width: 100px;"/></td>
-                                                <td>${movie.title}</td>
-                                                <td>${movie.director}</td>
-                                                <!-- <td>$64</td> -->
-                                                <td><a href="AdminController?page=movies-edit&movieId=${movie.movie_id}"><span class="badge bg-primary"><i class="bi bi-pencil-fill"></i> Edit</span></a>
-                                                <a href="AdminController?page=movies-removed&movieId=${movie.movie_id}"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
-                                            </tr>
+                                                <tr>
+                                                    <!--<th scope="row">#${movie.movie_id}</th>-->
+                                                    <th scope="row">#<c:out value="${count}"/></th>
+                                                        <c:set var="count" value="${count + 1}" />
+                                                    <td><img src="Images/${movie.picture}" alt="alt" style="height: 100px; width: 100px;"/></td>
+                                                    <td>${movie.title}</td>
+                                                    <td>${movie.director}</td>
+                                                    <td><a href="AdminController?page=movies-edit&movieId=${movie.movie_id}"><span class="badge bg-primary"><i class="bi bi-pencil-fill"></i> Edit</span></a>
+                                                        <a href="AdminController?page=movies-removed&movieId=${movie.movie_id}"><span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Remove</span></a></td>
+                                                </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>

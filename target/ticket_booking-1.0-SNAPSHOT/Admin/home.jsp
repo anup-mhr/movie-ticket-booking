@@ -531,7 +531,7 @@
                                         <tbody>
                                             <c:forEach  items="${moviesComming}" var="movie">
                                                 <tr>
-                                                    <th scope="row"><a href="#"><img src="Images/${movie.picture}" alt=""></a></th>
+                                                    <th scope="row"><a href="#"><img src="Images/${movie.picture}" alt="" style="height:72px;"></a></th>
                                                     <td><a href="#" class="text-primary fw-bold">${movie.title}</a></td>
                                                 </tr>
                                             </c:forEach>
@@ -562,7 +562,7 @@
             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
             <!-- Vendor JS Files -->
-            <!--<script src="Admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+            <script src="Admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
             <script src="Admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
             <!--<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>-->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.1/tinymce.min.js" integrity="sha512-in/06qQzsmVw+4UashY2Ta0TE3diKAm8D4aquSWAwVwsmm1wLJZnDRiM6e2lWhX+cSqJXWuodoqUq91LlTo1EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

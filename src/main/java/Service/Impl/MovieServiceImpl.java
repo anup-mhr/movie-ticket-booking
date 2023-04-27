@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -207,6 +205,27 @@ public class MovieServiceImpl implements MovieService {
         } finally {
             dbConnect.CloseConnection();
             return movie;
+        }
+    }
+
+    public void updateMovieById(int movie_id, Movie movie) {
+        String query = "update movies set title=?, description=?, release_date=?, video_url=?, cast=?, duration=?, gene=?, director=?, picture=?, poster=? where movie_id=?";
+        PreparedStatement preparedStatement = new DBConnection().getStatement(query);
+        try {
+            preparedStatement.setString(1, movie.getTitle());
+            preparedStatement.setString(2, movie.getDescription());
+            preparedStatement.setString(3, movie.getRelease_date());
+            preparedStatement.setString(4, movie.getVideo_url());
+            preparedStatement.setString(5, movie.getCast());
+            preparedStatement.setString(6, movie.getDuration());
+            preparedStatement.setString(7, movie.getGene());
+            preparedStatement.setString(8, movie.getDirector());
+            preparedStatement.setString(9, movie.getPicture());
+            preparedStatement.setString(10, movie.getPoster());
+            preparedStatement.setInt(11, movie_id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

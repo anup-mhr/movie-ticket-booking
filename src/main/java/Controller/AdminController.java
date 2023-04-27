@@ -14,21 +14,31 @@ import Service.Impl.MovieServiceImpl;
 import Service.Impl.ScreensServiceImpl;
 import Service.Impl.ShowtimeServiceImpl;
 import Service.Impl.TransactionServiceImpl;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Anup
  */
 @WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
+@MultipartConfig
 public class AdminController extends HttpServlet {
 
     @Override
@@ -96,8 +106,31 @@ public class AdminController extends HttpServlet {
             String duration = request.getParameter("duration");
             String genre = request.getParameter("genre");
             String trailer_url = request.getParameter("trailer_url");
-            String picture = request.getParameter("picture");
-            String poster = request.getParameter("poster");
+//            String picture = request.getParameter("picture");
+//            String poster = request.getParameter("poster");
+
+            //get file from request
+            Part picture = request.getPart("picture");
+            Part poster = request.getPart("poster");
+            //get filename
+            String pictureFilename = picture.getSubmittedFileName();
+            String posterFilename = poster.getSubmittedFileName();
+            System.out.println(pictureFilename);
+
+            InputStream is1 = picture.getInputStream();
+            InputStream is2 = poster.getInputStream();
+
+            // Get the directory to save the uploaded file
+            //String path1 = request.getServletContext().getRealPath("/")+ "Images";
+            String path1 = "C:/Users/Anup/Documents/NetBeansProjects/ticket_booking/src/main/webapp/Images";
+
+            System.out.println("path1:" + path1);
+
+            // Save the file to the project_name/image folder
+            Path filePath1 = Paths.get(path1, pictureFilename);
+            Files.copy(is1, filePath1, StandardCopyOption.REPLACE_EXISTING);
+            Path filePath2 = Paths.get(path1, posterFilename);
+            Files.copy(is2, filePath2, StandardCopyOption.REPLACE_EXISTING);
 
             Movie movie = new Movie();
             movie.setTitle(title);
@@ -108,13 +141,15 @@ public class AdminController extends HttpServlet {
             movie.setRelease_date(releaseDate);
             movie.setVideo_url(trailer_url);
             movie.setGene(genre);
-            movie.setPicture(picture);
-            movie.setPoster(poster);
+//            movie.setPicture(picture);
+//            movie.setPoster(poster);
+            movie.setPicture(pictureFilename);
+            movie.setPoster(posterFilename);
 
             new MovieServiceImpl().addMovie(movie);
             getHeaderInfo(request, response);
 
-            String status = "Movie AddedSuccessfully";
+            String status = "Movie Added Successfully";
             request.setAttribute("status", status);
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/movies-add.jsp");
             rd.forward(request, response);
@@ -129,6 +164,65 @@ public class AdminController extends HttpServlet {
             getHeaderInfo(request, response);
 
             RequestDispatcher rd = request.getRequestDispatcher("/Admin/movies-edit.jsp");
+            rd.forward(request, response);
+        }
+        
+        if (page.equalsIgnoreCase("movies-updated")) {
+            int movie_id = Integer.parseInt(request.getParameter("movie_id"));
+            
+            ////////////////////////////////////
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            String director = request.getParameter("director");
+            String casts = request.getParameter("casts");
+            String releaseDate = request.getParameter("releaseDate");
+            String duration = request.getParameter("duration");
+            String genre = request.getParameter("genre");
+            String trailer_url = request.getParameter("trailer_url");
+
+            //get file from request
+            Part picture = request.getPart("picture");
+            Part poster = request.getPart("poster");
+            //get filename
+            String pictureFilename = picture.getSubmittedFileName();
+            String posterFilename = poster.getSubmittedFileName();
+            System.out.println(pictureFilename);
+
+            InputStream is1 = picture.getInputStream();
+            InputStream is2 = poster.getInputStream();
+
+            // Get the directory to save the uploaded file
+            String path1 = "C:/Users/Anup/Documents/NetBeansProjects/ticket_booking/src/main/webapp/Images";
+            System.out.println("path1:" + path1);
+
+            // Save the file to the project_name/image folder
+            Path filePath1 = Paths.get(path1, pictureFilename);
+            Files.copy(is1, filePath1, StandardCopyOption.REPLACE_EXISTING);
+            Path filePath2 = Paths.get(path1, posterFilename);
+            Files.copy(is2, filePath2, StandardCopyOption.REPLACE_EXISTING);
+
+            Movie movie = new Movie();
+            movie.setTitle(title);
+            movie.setCast(casts);
+            movie.setDescription(description);
+            movie.setDirector(director);
+            movie.setDuration(duration);
+            movie.setRelease_date(releaseDate);
+            movie.setVideo_url(trailer_url);
+            movie.setGene(genre);
+            movie.setPicture(pictureFilename);
+            movie.setPoster(posterFilename);
+
+            new MovieServiceImpl().updateMovieById(movie_id, movie);
+            
+            //////////////////////////////////////////////
+            
+            List<Movie> movies = new MovieServiceImpl().getMovies();
+
+            request.setAttribute("movies", movies);
+            getHeaderInfo(request, response);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/Admin/movies-remove.jsp");
             rd.forward(request, response);
         }
 
